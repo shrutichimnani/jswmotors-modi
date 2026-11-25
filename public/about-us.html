@@ -1,0 +1,743 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>About Us | JSW Motors × Gautam Modi Group</title>
+<meta name="description" content="Gautam Modi Group brings nearly a century of automotive heritage to JSW Motors, the JSW Group's entry into next-generation passenger mobility.">
+<meta name="theme-color" content="#050607">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="assets/about/gmg-group.jpg">
+<style>
+:root{
+  --black:#000; --bg:#050607; --ink:#0a0a0a;
+  --white:#fff; --g10:#e6e6e6; --g30:#b3b3b3; --g50:#808080; --g70:#4d4d4d; --g90:#191919;
+  --teal-900:#00374c; --teal-700:#317485; --teal-500:#5da0b3; --teal-200:#d8e7e2;
+  --accent:#e0242c;
+  --font:'new-science','Anek Latin',Arial,sans-serif;
+  --pad:clamp(24px,6vw,96px);
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--white);font-family:var(--font);font-weight:400;line-height:1.4;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wide{font-stretch:125%;font-variation-settings:"wdth" 125}
+
+/* ---------- teal ambient backdrop (after the hero): deep teal water-light, like jswmotors.com ---------- */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:1;overflow:hidden;
+  background:radial-gradient(120% 85% at 72% -12%,#0a2b35 0%,#06171d 34%,#050607 70%)}
+/* soft light shafts falling from the surface */
+.ambient .rays{position:absolute;left:-25%;right:-25%;top:-30%;height:120%;
+  background:repeating-linear-gradient(104deg,transparent 0 7%,rgba(93,160,179,.06) 8%,transparent 10.5%,transparent 15%,rgba(216,231,226,.04) 16%,transparent 18%);
+  filter:blur(14px);transform-origin:50% 0;
+  -webkit-mask-image:radial-gradient(70% 75% at 62% 0%,#000 0%,transparent 78%);mask-image:radial-gradient(70% 75% at 62% 0%,#000 0%,transparent 78%);
+  animation:rays 26s ease-in-out infinite alternate}
+@keyframes rays{from{transform:translateX(-3%) skewX(-2deg)}to{transform:translateX(3%) skewX(2deg)}}
+/* slow, breathing pools of teal light */
+.ambient .pool{position:absolute;border-radius:50%;filter:blur(60px);animation:pool 18s ease-in-out infinite alternate}
+.ambient .pool.a{width:60vw;height:60vw;left:-18vw;bottom:-30vw;background:radial-gradient(circle,#00374c 0%,transparent 70%);opacity:.55}
+.ambient .pool.b{width:42vw;height:42vw;right:-8vw;top:18vh;background:radial-gradient(circle,#317485 0%,transparent 70%);opacity:.14;animation-duration:24s;animation-direction:alternate-reverse}
+@keyframes pool{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,-3vh) scale(1.08)}}
+.ambient .pool.c{width:46vw;height:46vw;right:-12vw;bottom:-22vw;background:radial-gradient(circle,#5da0b3 0%,transparent 68%);opacity:.12;animation-duration:22s}
+/* a faint surface shimmer line near the top */
+.ambient .surface{position:absolute;left:0;right:0;top:0;height:30vh;background:linear-gradient(#5da0b31a,transparent)}
+
+/* ---------- ambient layers ---------- */
+.vignette{position:fixed;inset:0;z-index:4;pointer-events:none;background:radial-gradient(130% 100% at 50% 45%,transparent 50%,rgba(0,0,0,.55) 100%)}
+.grain{position:fixed;inset:-50%;z-index:5;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:60;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#e0242c00,var(--accent));box-shadow:0 0 12px var(--accent)}
+
+/* ---------- header (shared with home) ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--pad);transition:background .5s,backdrop-filter .5s,padding .5s}
+header.scrolled{background:linear-gradient(#050607e6,#050607a0 70%,transparent);backdrop-filter:blur(10px);padding-top:14px;padding-bottom:14px}
+.brand img{height:30px;width:auto}
+nav.links{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:0}
+nav.links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 36px;color:var(--g10);position:relative;transition:color .3s}
+nav.links a+a::before{content:"";position:absolute;left:0;top:50%;height:12px;width:1px;background:var(--g70);transform:translateY(-50%)}
+nav.links a:hover,nav.links a[aria-current]{color:var(--white)}
+nav.links a[aria-current]::after{content:"";position:absolute;left:36px;right:36px;bottom:-2px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.btn-pill{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--accent);border-radius:999px;color:var(--white);transition:background .35s,color .35s,box-shadow .35s}
+.btn-pill:hover{background:var(--accent);color:#000;box-shadow:0 0 30px #e0242c55}
+
+/* ---------- chapter index (right edge) ---------- */
+.chap{position:fixed;right:clamp(14px,2.2vw,32px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.chap a{display:flex;align-items:center;gap:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:transparent;transition:color .4s}
+.chap a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--g50);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s var(--ease);display:block}
+.chap a:hover{color:var(--g30)}
+.chap a.on i{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--accent);transform:scale(1.35)}
+
+/* ---------- type ---------- */
+main{position:relative;z-index:3}
+h1,h2,h3{font-weight:400;text-transform:uppercase;line-height:1.02}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--g30)}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.rule{width:44px;height:2px;background:var(--accent);margin:26px 0;box-shadow:0 0 14px var(--accent)}
+p.lead{font-size:clamp(15px,1.25vw,19px);color:var(--g10);line-height:1.6;max-width:44ch}
+
+/* reveal */
+[data-r]{opacity:0;transform:translateY(34px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease);transition-delay:calc(var(--d,0)*1ms)}
+[data-r].show{opacity:1;transform:none;filter:none}
+.mask{display:block;overflow:hidden;padding-bottom:.04em}
+.mask>span{display:block;transform:translateY(110%);transition:transform 1.3s var(--ease);transition-delay:calc(var(--d,0)*1ms)}
+.mask.show>span{transform:none}
+
+/* every scene is a full-viewport panel; tall ".pin" wrappers hold a sticky stage that is driven by scroll */
+.scene{position:relative;min-height:100vh;min-height:100svh;width:100%}
+.pin{position:relative}
+.stage{position:sticky;top:0;height:100vh;height:100svh;width:100%;overflow:hidden}
+/* soft seams between scenes */
+.seam{position:absolute;left:0;right:0;height:26vh;pointer-events:none;z-index:6}
+.seam.top{top:0;background:linear-gradient(var(--bg),transparent)}
+.seam.bot{bottom:0;background:linear-gradient(transparent,var(--bg))}
+
+/* ===== 1 · HERO: GMG × JSW Motors logo lockup ===== */
+#hero .stage{background:radial-gradient(60% 50% at 50% 50%,#00374c55,transparent 70%),var(--bg)}
+#hero .hero-copy{position:absolute;inset:0 var(--pad);z-index:3;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;gap:26px;
+  opacity:calc(1 - var(--hp,0)*1.6);transform:translateY(calc(var(--hp,0)*-8vh))}
+.hero-copy .lock{display:flex;align-items:center;gap:clamp(18px,3vw,40px);animation:lockin 1.6s var(--ease) both}
+.lock img:first-child{height:clamp(56px,7vw,96px);width:auto}
+.lock img:last-child{height:clamp(26px,3vw,42px);width:auto}
+.lock span{font-size:clamp(20px,2vw,30px);color:var(--accent);text-shadow:0 0 20px #e0242c88}
+@keyframes lockin{from{opacity:0;transform:translateY(20px);filter:blur(6px)}to{opacity:1;transform:none;filter:none}}
+.hero-copy h1{font-size:clamp(28px,4vw,64px);letter-spacing:.01em}
+.hero-copy aside{max-width:46ch;font-size:14px;color:var(--g30);line-height:1.6}
+.hero-copy aside b{display:block;color:var(--white);font-weight:500;letter-spacing:.18em;font-size:11px;text-transform:uppercase;margin-bottom:10px}
+.scroll-cue{position:absolute;left:50%;bottom:22px;transform:translateX(-50%);z-index:3;font-size:9px;letter-spacing:.3em;text-transform:uppercase;color:var(--g50);display:flex;flex-direction:column;align-items:center;gap:10px;opacity:calc(1 - var(--hp,0)*3)}
+.scroll-cue i{width:1px;height:38px;background:linear-gradient(var(--accent),transparent);animation:cue 2s var(--ease) infinite;transform-origin:top}
+@keyframes cue{0%{transform:scaleY(0)}50%{transform:scaleY(1)}100%{transform:scaleY(1);opacity:0}}
+
+/* ===== 2 · MANIFESTO: words light up as you scroll ===== */
+#manifesto .stage{display:flex;align-items:center;padding:0 var(--pad)}
+.mani{max-width:1300px;margin:0 auto;width:100%}
+.mani p{font-size:clamp(26px,3.7vw,60px);line-height:1.14;letter-spacing:-.005em;font-weight:400;margin-top:30px}
+.mani p .w{color:#ffffff1c;transition:color .5s var(--ease)}
+.mani p .w.on{color:var(--white)}
+.mani p .w.hl.on{color:var(--accent);text-shadow:0 0 30px #e0242c66}
+
+/* ===== 3 · PEOPLE: the photo window opens to full bleed ===== */
+#people .stage{background:var(--bg)}
+.photo{position:absolute;inset:0;will-change:clip-path}
+.photo img{width:100%;height:100%;object-fit:cover;object-position:50% 62%;will-change:transform}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,#050607cc 0%,#05060722 30%,#05060700 50%,#050607ee 92%,#050607 100%),linear-gradient(90deg,#050607aa,transparent 60%)}
+.people-copy{position:absolute;left:var(--pad);right:var(--pad);bottom:clamp(48px,10vh,110px);z-index:3;display:flex;align-items:flex-end;justify-content:space-between;gap:40px}
+.people-copy h2{font-size:clamp(28px,4.4vw,72px)}
+.people-copy .lead{max-width:40ch}
+.people-copy [data-x]{opacity:0;transform:translateY(30px);transition:opacity .9s var(--ease),transform .9s var(--ease)}
+.people-copy.show [data-x]{opacity:1;transform:none}
+.people-copy.show [data-x]:nth-child(2){transition-delay:.15s}
+.frame-label{position:absolute;top:13%;left:50%;transform:translate(-50%,-50%);z-index:3;display:flex;align-items:center;gap:16px;white-space:nowrap;font-size:clamp(11px,1vw,14px);font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--white);pointer-events:none}
+.frame-label::before,.frame-label::after{content:"";width:32px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+@media(max-width:560px){.frame-label{letter-spacing:.18em;gap:10px}.frame-label::before,.frame-label::after{width:18px}}
+
+
+/* ===== 5 · NUMBERS ===== */
+#numbers{display:flex;align-items:center;padding:120px var(--pad);background:radial-gradient(80% 60% at 85% 50%,#00374c55,transparent 70%)}
+#numbers .in{max-width:1500px;margin:0 auto;width:100%}
+#numbers h2{font-size:clamp(24px,3vw,46px);max-width:16ch;margin-top:18px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));margin-top:clamp(50px,9vh,100px);border-top:1px solid #ffffff1f}
+.stat{padding:38px 30px 0 0;position:relative}
+.stat+.stat{padding-left:30px;border-left:1px solid #ffffff1f}
+.stat .k{display:flex;align-items:center;gap:12px;font-size:11px;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--accent)}
+.stat .k::before{content:"";width:18px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.stat b{display:block;margin-top:20px;font-weight:400;font-size:clamp(17px,1.45vw,24px);line-height:1.2;letter-spacing:.02em;text-transform:uppercase;color:var(--white);font-stretch:125%;font-variation-settings:"wdth" 125}
+.stat p{margin-top:14px;font-size:clamp(14px,.95vw,15px);color:var(--g10);line-height:1.65;max-width:30ch}
+
+/* ===== 6 · PARTNERSHIP ===== */
+#together{display:flex;align-items:center;padding:120px var(--pad)}
+#together .in{max-width:1500px;margin:0 auto;width:100%}
+.together-head{text-align:center;max-width:900px;margin:0 auto}
+.together-head h2{font-size:clamp(26px,3.6vw,58px);margin-top:20px}
+.together-head .lead{margin:22px auto 0;max-width:56ch}
+.duo{display:grid;grid-template-columns:1fr auto 1fr;align-items:stretch;margin-top:clamp(50px,9vh,96px)}
+.side{padding:clamp(24px,3vw,44px);border:1px solid #ffffff17;border-radius:4px;background:linear-gradient(160deg,#ffffff08,#ffffff02);backdrop-filter:blur(6px);position:relative;overflow:hidden}
+.side::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 0% 0%,var(--glow),transparent 70%);opacity:.5;pointer-events:none}
+.side.gmg{--glow:#5da0b333}
+.side.jsw{--glow:#e0242c2a}
+.side .logo{height:46px;display:flex;align-items:center}
+.side .logo img{max-height:100%;width:auto}
+.side h3{margin-top:28px;font-size:clamp(16px,1.5vw,22px);letter-spacing:.06em}
+.side p{margin-top:14px;font-size:14px;color:var(--g30);line-height:1.65}
+.side ul{margin-top:24px;list-style:none;border-top:1px solid #ffffff14}
+.side li{display:flex;justify-content:space-between;gap:20px;padding:13px 0;border-bottom:1px solid #ffffff10;font-size:13px;color:var(--g30)}
+.side li b{color:var(--white);font-weight:500;text-align:right}
+.joint{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:0 clamp(16px,2.4vw,40px)}
+.joint i{flex:1;width:1px;background:linear-gradient(transparent,var(--accent),transparent)}
+.joint span{width:52px;height:52px;border-radius:50%;border:1px solid var(--accent);display:grid;place-items:center;font-size:18px;color:var(--white);box-shadow:0 0 30px #e0242c44,inset 0 0 20px #e0242c33;margin:14px 0}
+.promise{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(20px,3vw,48px);margin-top:clamp(40px,7vh,80px)}
+.promise div{border-top:2px solid var(--accent);padding-top:20px}
+.promise h4{font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:500}
+.promise p{margin-top:10px;font-size:14px;color:var(--g30);line-height:1.6}
+
+/* ===== 7 · VALUES: stacking cards ===== */
+#values{padding:120px var(--pad) 10vh}
+#values .in{max-width:1300px;margin:0 auto}
+.values-head{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap}
+.values-head h2{font-size:clamp(26px,3.4vw,54px);margin-top:18px;max-width:14ch}
+.values-head .lead{max-width:40ch}
+.cards{margin-top:clamp(24px,4.5vh,50px)}
+.card{position:sticky;top:calc(14vh + var(--i)*26px);min-height:52vh;margin-bottom:6vh;border-radius:6px;border:1px solid #ffffff1a;
+  background:linear-gradient(150deg,#0e1518,#070a0b 60%);box-shadow:0 -20px 60px #0009;padding:clamp(28px,4vw,60px);display:grid;grid-template-columns:auto 1fr 1fr;gap:clamp(20px,4vw,70px);align-items:start;overflow:hidden;transform-origin:50% 0;will-change:transform}
+.card::after{content:"";position:absolute;right:-10%;bottom:-40%;width:60%;aspect-ratio:1;border-radius:50%;border:1px solid #ffffff0d;box-shadow:0 0 0 40px #ffffff03,0 0 0 80px #ffffff02}
+.card .n{font-size:clamp(50px,6vw,100px);font-weight:300;line-height:.9;color:var(--accent);font-stretch:125%;font-variation-settings:"wdth" 125;text-shadow:0 0 40px #e0242c44}
+.card h3{font-size:clamp(22px,2.6vw,42px);letter-spacing:.02em}
+.card .tag{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--teal-500);display:block;margin-bottom:14px}
+.card p{font-size:clamp(14px,1.15vw,17px);color:var(--g30);line-height:1.7}
+.card .pair{font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--g50);margin-top:22px}
+.card .pair b{color:var(--white);font-weight:500}
+
+/* ===== 8 · LEADERSHIP ===== */
+#leaders{display:flex;align-items:center;padding:clamp(90px,12vh,120px) var(--pad) clamp(50px,8vh,90px)}
+#leaders .in{max-width:1500px;margin:0 auto;width:100%}
+#leaders h2{font-size:clamp(24px,2.7vw,42px);margin-top:14px}
+.people{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(16px,2vw,28px);margin-top:clamp(24px,4.5vh,50px)}
+.person{position:relative;text-align:center}
+.person .ph{position:relative;width:max-content;max-width:100%;margin:0 auto;overflow:hidden;border-radius:4px;background:#0e1518;border:1px solid #ffffff14}
+.person .ph img{display:block;height:clamp(240px,40vh,420px);width:auto;max-width:100%;object-fit:contain;transition:filter .8s var(--ease);filter:saturate(.92)}
+.person .ph::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 75%,#05060755 100%);pointer-events:none}
+.person .ph::before{content:"";position:absolute;left:0;right:0;bottom:0;height:2px;z-index:2;background:var(--accent);box-shadow:0 0 14px var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .9s var(--ease)}
+.person:hover .ph img{filter:none}
+.person:hover .ph::before{transform:scaleX(1)}
+@media(max-width:900px){
+  .person{display:grid;grid-template-columns:clamp(110px,30vw,180px) 1fr;grid-template-rows:auto auto 1fr;column-gap:22px;align-items:start}
+  .people .person .ph{grid-row:1/span 3;width:100%}
+  .people .person .ph img{height:auto;width:100%}
+  .people .person h3{margin-top:4px}
+  .people .person{text-align:left}
+  .people .person p{margin-left:0}
+}
+.person h3{margin-top:20px;font-size:clamp(16px,1.3vw,20px);letter-spacing:.04em}
+.person .role{display:block;margin-top:8px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent)}
+.person p{margin-left:auto;margin-right:auto;margin-top:12px;font-size:14px;color:var(--g30);line-height:1.65;max-width:38ch}
+
+/* ===== 9 · CLOSE + FOOTER ===== */
+#close{display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(120px,20vh,200px) var(--pad) 0;
+  background:radial-gradient(70% 50% at 50% 70%,#e0242c1f,transparent 70%)}
+#close .c{text-align:center;max-width:900px;margin:0 auto}
+#close h2{font-size:clamp(28px,4.6vw,76px)}
+#close .rule{margin:30px auto}
+#close p{color:var(--g30);font-size:15px}
+.cta-row{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;margin-top:40px}
+.btn{display:inline-flex;align-items:center;gap:14px;height:54px;padding:0 30px;border-radius:4px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;font-weight:600;transition:box-shadow .4s,background .3s,border-color .3s}
+.btn svg{width:30px;height:11px;stroke:currentColor;fill:none;transition:transform .4s var(--ease)}
+.btn:hover svg{transform:translateX(6px)}
+.btn.solid{background:var(--accent);color:#fff}
+.btn.solid:hover{background:#f04048;box-shadow:0 0 40px #e0242c77}
+.btn.ghost{border:1px solid #ffffff33}
+.btn.ghost:hover{border-color:var(--white)}
+footer{position:relative;z-index:2;margin:clamp(90px,14vh,160px) calc(var(--pad)*-1) 0;border-top:1px solid #ffffff17;padding:30px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#050607cc;backdrop-filter:blur(8px)}
+footer img{height:32px;width:auto}
+footer .mid{display:flex;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g30)}
+footer .mid a{padding:0 22px;position:relative;transition:color .3s}
+footer .mid a:hover{color:var(--white)}
+footer .mid a+a::before{content:"";position:absolute;left:0;top:50%;height:11px;width:1px;background:var(--accent);transform:translateY(-50%)}
+footer .soc{display:flex;align-items:center;gap:18px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g30)}
+footer .soc a svg{width:19px;height:19px;fill:#fff;display:block;transition:fill .3s}
+footer .soc a:hover svg{fill:var(--g30)}
+.copy{width:100%;text-align:center;font-size:10px;color:var(--g50);letter-spacing:.06em}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  .chap{display:none}
+  .stats{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .stat:nth-child(3){border-left:0;padding-left:0}
+  .stat{padding-bottom:30px}
+  .duo{grid-template-columns:1fr}
+  .joint{flex-direction:row;padding:18px 0}
+  .joint i{height:1px;width:auto;background:linear-gradient(90deg,transparent,var(--accent),transparent)}
+  .joint span{margin:0 14px}
+  .card{grid-template-columns:auto 1fr}
+  .card .body{grid-column:1/-1}
+}
+@media(max-width:900px){
+  nav.links{display:none}
+  .hero-copy,.people-copy{flex-direction:column;align-items:flex-start;gap:22px}
+  .hero-copy aside{padding-bottom:0}
+  .people{grid-template-columns:1fr;gap:34px}
+  .promise{grid-template-columns:1fr}
+  footer{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){
+  :root{--pad:22px}
+  header{padding:14px var(--pad)}
+  header.scrolled{padding-top:10px;padding-bottom:10px}
+  .brand img{height:24px}
+  .btn-pill{padding:9px 14px;font-size:10px;letter-spacing:.1em}
+  .hero-copy h1{font-size:clamp(32px,10vw,44px)}
+  .stats{grid-template-columns:1fr}
+  .stat,.stat+.stat{border-left:0;padding-left:0;border-bottom:1px solid #ffffff10}
+  .card{grid-template-columns:1fr;min-height:60vh;top:calc(11vh + var(--i)*18px)}
+  .card .n{font-size:46px}
+  .side li{flex-direction:column;gap:4px}
+  .side li b{text-align:left}
+  .btn{width:100%;justify-content:center}
+  footer{padding:26px var(--pad) calc(26px + env(safe-area-inset-bottom));gap:16px}
+  footer .mid{flex-wrap:wrap;justify-content:center;row-gap:10px}
+  footer .mid a{padding:0 14px;white-space:nowrap}
+  footer .mid a+a::before{display:none}
+  footer .mid a:not(:last-child){border-right:1px solid var(--g70)}
+  footer img{height:26px}
+}
+@media(hover:none){.btn-pill:hover{background:transparent;color:inherit;box-shadow:none}}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition-duration:.01ms!important}
+  [data-r],.mask>span,.people-copy [data-x]{opacity:1;transform:none;filter:none}
+}
+
+/* ---------- phone / tablet menu ---------- */
+.hr{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;position:relative;flex:none;width:42px;height:42px;border:1px solid #ffffff38;border-radius:50%;background:#05060766;backdrop-filter:blur(6px);cursor:pointer}
+.menu-btn i{position:absolute;left:13px;right:13px;height:1.5px;background:#fff;border-radius:2px;transition:transform .45s var(--ease),top .45s var(--ease)}
+.menu-btn i:first-child{top:16px}
+.menu-btn i:last-child{top:24px}
+.menu-open .menu-btn i:first-child{top:20px;transform:rotate(45deg)}
+.menu-open .menu-btn i:last-child{top:20px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:45;display:flex;flex-direction:column;justify-content:center;padding:110px 28px calc(40px + env(safe-area-inset-bottom));
+  background:radial-gradient(90% 60% at 80% 0%,#0a2b35cc,transparent 70%),rgba(5,6,7,.97);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+.menu-open .mnav{opacity:1;visibility:visible}
+.mnav a.l{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid #ffffff17;font-size:clamp(24px,7vw,34px);text-transform:uppercase;letter-spacing:.04em;font-stretch:125%;font-variation-settings:"wdth" 125;
+  opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.mnav a.l::after{content:"";width:22px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent);opacity:0;transition:opacity .3s}
+.mnav a.l[aria-current]::after{opacity:1}
+.mnav a.l:first-child{border-top:1px solid #ffffff17}
+.mnav .reg{margin-top:36px;height:54px;border-radius:4px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.mnav small{margin-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g50);opacity:0;transition:opacity .5s var(--ease)}
+.menu-open .mnav a.l,.menu-open .mnav .reg,.menu-open .mnav small{opacity:1;transform:none}
+.menu-open .mnav a.l:nth-child(1){transition-delay:.08s}
+.menu-open .mnav a.l:nth-child(2){transition-delay:.14s}
+.menu-open .mnav a.l:nth-child(3){transition-delay:.2s}
+.menu-open .mnav .reg{transition-delay:.26s}
+.menu-open .mnav small{transition-delay:.32s}
+body.menu-open{overflow:hidden}
+@media(max-width:900px){.menu-btn{display:block}}
+@media(min-width:901px){.mnav{display:none}}
+@media(max-width:560px){header{gap:12px}.hr{gap:8px}.brand img{height:21px}header .btn-pill{padding:9px 11px;letter-spacing:.07em;font-size:9.5px}}
+
+/* ---------- sculpted curves backdrop: dark surfaces lit along their edges in JSW teal and white ---------- */
+.curves{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#050607}
+.curves svg{position:absolute;inset:-6% 0;width:100%;height:112%}
+.curves g{will-change:transform;transition:transform .2s linear}
+.curves .cv-l1{transform:translate3d(0,calc(var(--sy,0)*-90px),0);animation:cvA 28s ease-in-out infinite alternate}
+.curves .cv-l2{transform:translate3d(0,calc(var(--sy,0)*60px),0);animation:cvB 34s ease-in-out infinite alternate}
+.curves .cv-l3{transform:translate3d(0,calc(var(--sy,0)*-160px),0)}
+@keyframes cvA{from{translate:-1.5% 0}to{translate:1.5% 0}}
+@keyframes cvB{from{translate:1% 0}to{translate:-1% 0}}
+@media(max-width:900px){.curves svg{inset:-4% -40%;width:180%}}
+
+
+/* ---------- motion & interaction refinements (emil-design-eng) ---------- */
+:root{--ease:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1)}
+/* header: fade the background only; padding no longer animates (layout) */
+header,header.scrolled{transition:background .4s ease,backdrop-filter .4s ease}
+header.scrolled{padding-top:22px;padding-bottom:22px}
+@media(max-width:560px){header.scrolled{padding-top:14px;padding-bottom:14px}}
+/* press feedback on everything clickable */
+.btn-pill{transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.submit{transition:background .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.btn{transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.menu-btn{transition:transform 160ms var(--ease)}
+.btn-pill:active,.submit:active,.btn:active{transform:scale(.97)}
+.menu-btn:active{transform:scale(.95)}
+.menu-open .mnav .reg:active{transform:scale(.97);transition-duration:160ms}
+/* phone menu: open with the drawer curve, close faster than it opens */
+.mnav{transition:opacity .22s ease,visibility .22s}
+.menu-open .mnav{transition:opacity .4s var(--ease-drawer),visibility .4s}
+/* hover effects only where there is a real pointer */
+@media not ((hover:hover) and (pointer:fine)){
+  .btn-pill:hover{background:transparent;color:inherit;box-shadow:none}
+  .cta:hover svg,.submit:hover svg,.btn:hover svg{transform:none}
+  .cta:hover span.u::after{width:32px}
+  .place:hover,.loc:hover{transform:none}
+  .person:hover .ph img{filter:saturate(.92)}
+  .person:hover .ph::before{transform:scaleX(0)}
+}
+/* reduced motion: fewer and gentler, not none: keep the fades, drop the movement */
+@media(prefers-reduced-motion:reduce){
+  [data-r]{opacity:0!important;transform:none!important;filter:none!important;transition:opacity .45s ease!important}
+  [data-r].show{opacity:1!important}
+}
+
+/* ---------- black & white refresh: subtle road-red accent, no teal, no glows ---------- */
+:root{--accent:#a8232b;--hl:#a6a6a6}
+.curves,.ambient,.chap{display:none!important}
+/* section washes off: plain black */
+#jsw,#gmg,#register,#visit,#faq,#close,#numbers,#together,#values,#leaders,#c-form,#c-loc{background:none!important}
+#hero .stage{background:var(--bg)!important}
+.side::before,.loc::before,.loc::after{display:none!important}
+/* no glows anywhere */
+.progress{box-shadow:none!important;background:var(--accent)!important;height:1px}
+nav.links a[aria-current]::after,.person .ph::before,.stat .k::before,.frame-label::before,.frame-label::after,.mnav a.l::after,.joint span{box-shadow:none!important}
+.btn-pill:hover,.submit:hover,.btn.solid:hover{box-shadow:none!important}
+.lock span,.mani p .w.hl.on,.card .n{text-shadow:none!important}
+.submit:hover,.btn.solid:hover{background:#bb2b33!important}
+.btn-pill:hover{background:var(--accent);color:#fff}
+/* neutral greys instead of teal */
+.card{background:linear-gradient(150deg,#161616,#0a0a0a 60%)!important}
+.card .tag{color:var(--g30)!important}
+.place,.loc,#c-form .box,#contact .box,.side{background:linear-gradient(160deg,#161616d9,#0a0a0ae6)!important}
+.place:hover,.loc:hover{border-color:#ffffff33!important}
+.f input:focus{border-color:#ffffff66!important;box-shadow:0 0 0 3px #ffffff12!important}
+.consent input:checked{background:var(--accent)!important;border-color:var(--accent)!important}
+.loc .ic{border-color:#ffffff26!important;background:#ffffff08!important}
+.mnav{background:rgba(5,5,5,.97)!important}
+/* headings: one line on desktop */
+h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
+@media(min-width:901px){
+  main h1,main h2{white-space:nowrap}
+  main section h2.wide{font-size:clamp(22px,2.5vw,40px)!important;max-width:none!important}
+  #c-form h2.wide,#faq h2.wide{font-size:clamp(20px,2.05vw,32px)!important}
+  #jsw .in>div:first-child{display:contents}
+  #jsw .in{row-gap:clamp(28px,5vh,48px)}
+  #jsw h2{grid-column:1/-1}
+  #jsw .in>div:last-child{grid-column:2}
+  #gmg .in{max-width:1200px}
+  .together-head,.values-head>div{max-width:none!important}
+  #hero .hero-copy h1{font-size:clamp(26px,3.4vw,56px)}
+}
+/* ownership line */
+.copy.owner{margin-top:-8px;color:var(--g50)}
+</style>
+</head>
+<body>
+<div class="curves" aria-hidden="true">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cvEdge" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5da0b3" stop-opacity="0"/><stop offset=".3" stop-color="#5da0b3" stop-opacity=".55"/>
+          <stop offset=".62" stop-color="#eef7f7" stop-opacity=".95"/><stop offset=".82" stop-color="#7fc0cc" stop-opacity=".6"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="cvEdge2" x1="1" y1="0" x2="0" y2="0">
+          <stop offset="0" stop-color="#5da0b3" stop-opacity="0"/><stop offset=".25" stop-color="#d8e7e2" stop-opacity=".8"/>
+          <stop offset=".55" stop-color="#5da0b3" stop-opacity=".45"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="cvSurf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#141b1e"/><stop offset=".35" stop-color="#0b1012"/><stop offset="1" stop-color="#050607"/>
+        </linearGradient>
+        <linearGradient id="cvSurfTop" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#121a1d"/><stop offset=".5" stop-color="#090d0f"/><stop offset="1" stop-color="#050607"/>
+        </linearGradient>
+        <radialGradient id="cvFlare"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset=".35" stop-color="#bfe3e8" stop-opacity=".18"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/></radialGradient>
+        <filter id="cvSheen" x="-10%" y="-100%" width="120%" height="300%"><feGaussianBlur stdDeviation="28"/></filter>
+        <filter id="cvGlow" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+      </defs>
+      <g class="cv-l1">
+        <path d="M-200 790 C 300 760 820 610 1800 330 L1800 1300 L-200 1300 Z" fill="url(#cvSurf)"/>
+        <path d="M-200 850 C 300 820 820 670 1800 390" fill="none" stroke="#5da0b3" stroke-width="120" opacity=".07" filter="url(#cvSheen)"/>
+        <path d="M-200 790 C 300 760 820 610 1800 330" fill="none" stroke="url(#cvEdge)" stroke-width="12" opacity=".35" filter="url(#cvGlow)"/>
+        <path d="M-200 790 C 300 760 820 610 1800 330" fill="none" stroke="url(#cvEdge)" stroke-width="1.6"/>
+        <circle cx="1210" cy="500" r="150" fill="url(#cvFlare)" opacity=".32"/>
+      </g>
+      <g class="cv-l2">
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20 L1800 -300 L-200 -300 Z" fill="url(#cvSurfTop)"/>
+        <path d="M-200 250 C 250 280 700 240 1050 150 C 1300 85 1520 10 1800 -30" fill="none" stroke="#d8e7e2" stroke-width="100" opacity=".05" filter="url(#cvSheen)"/>
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20" fill="none" stroke="url(#cvEdge2)" stroke-width="10" opacity=".3" filter="url(#cvGlow)"/>
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20" fill="none" stroke="url(#cvEdge2)" stroke-width="1.4"/>
+        <circle cx="1380" cy="95" r="120" fill="url(#cvFlare)" opacity=".5"/>
+      </g>
+      <g class="cv-l3">
+        <path d="M-200 600 C 350 640 900 560 1800 400" fill="none" stroke="#5da0b3" stroke-opacity=".22" stroke-width="1"/>
+        <path d="M-200 905 C 500 880 1100 760 1800 640" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="1"/>
+      </g>
+    </svg>
+</div>
+<div class="progress" id="progress"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<header id="top">
+  <a class="brand" href="/" aria-label="JSW Motors home"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <nav class="links" aria-label="Primary">
+    <a href="/#jsw">The Vision</a>
+    <a href="/about-us" aria-current="page">About Us</a>
+    <a href="/contact-us">Contact Us</a>
+  </nav>
+  <div class="hr">
+    <a class="btn-pill" href="/#register">Register Interest</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Menu" aria-hidden="true">
+  <a class="l" href="/#jsw">The Vision</a>
+  <a class="l" href="/about-us" aria-current="page">About Us</a>
+  <a class="l" href="/contact-us">Contact Us</a>
+  <a class="reg" href="/#register">Register interest</a>
+  <small>JSW Motors · Brought closer to you by Gautam Modi Group</small>
+</nav>
+
+
+<main>
+
+<!-- 1 · HERO -->
+<section id="hero" class="scene pin" style="height:100vh">
+  <div class="stage">
+    <div class="hero-copy">
+      <div class="lock"><img src="assets/gmg-logo.png" alt="Gautam Modi Group" width="374" height="337"><span aria-hidden="true">×</span><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></div>
+      <div>
+        <h1 class="wide">
+          <span class="mask"><span style="--d:500">Two legacies.</span></span>
+          <span class="mask"><span style="--d:680">One road ahead.</span></span>
+        </h1>
+      </div>
+      <aside data-r style="--d:1100"><b>Gautam Modi Group × JSW Motors</b>Nearly a century of putting India on wheels, now joined to the JSW Group’s boldest new venture.</aside>
+    </div>
+    <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
+  </div>
+</section>
+
+<!-- 2 · MANIFESTO -->
+<section id="manifesto" class="scene pin" style="height:220vh">
+  <div class="stage">
+    <div class="mani">
+      <p id="maniText">Since 1932 the Modi family has been in the business of moving India. What began as Modi Auto Corporation in Gwalior grew into Gautam Modi Group, one of Mumbai’s most trusted automotive families. Today we bring that experience to *JSW Motors*, so the next generation of mobility arrives with a name you already know.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · PEOPLE -->
+<section id="people" class="scene pin" style="height:260vh">
+  <div class="stage">
+    <div class="photo" id="photo"><img src="assets/about/gmg-group.jpg" alt="The Gautam Modi Group team gathered together" width="1920" height="1280"></div>
+    <div class="frame-label" id="frameLabel">The people behind the promise</div>
+    <div class="people-copy" id="peopleCopy">
+      <h2 class="wide" data-x>3,500+ people. One family.</h2>
+      <p class="lead" data-x>From the showroom floor to the service bay, the GMG team grew from a hundred people to over 3,500. They will be the ones who welcome you to JSW Motors.</p>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · NUMBERS -->
+<section id="numbers" class="scene">
+  <div class="seam top"></div>
+  <div class="in">
+    <h2 class="wide" data-r style="--d:120">Experience you can count on.</h2>
+    <div class="stats">
+      <div class="stat" data-r style="--d:200"><span class="k">Heritage</span><b>Nearly a century in motion</b><p>The Modi family has been in the automobile business since the days of Modi Auto Corporation in Gwalior.</p></div>
+      <div class="stat" data-r style="--d:320"><span class="k">People</span><b>A team that feels like family</b><p>Trained specialists across sales, service, insurance and finance, ready to look after every JSW Motors customer.</p></div>
+      <div class="stat" data-r style="--d:440"><span class="k">Trust</span><b>Thousands of happy drivers</b><p>Families across the region return to us car after car, and recommend us to the people they know.</p></div>
+      <div class="stat" data-r style="--d:560"><span class="k">Brands</span><b>Trusted by leading carmakers</b><p>Hyundai, Mahindra, Audi, Kia and MG already trust GMG to represent them. Now JSW Motors does too.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · PARTNERSHIP -->
+<section id="together" class="scene">
+  <div class="in">
+    <div class="together-head">
+      <h2 class="wide" data-r style="--d:120">Built by JSW. Brought to you by GMG.</h2>
+      <p class="lead" data-r style="--d:240">JSW Motors brings the engineering strength of one of India’s fastest-growing conglomerates. Gautam Modi Group brings the showrooms, service and people that make ownership effortless.</p>
+    </div>
+    <div class="duo">
+      <div class="side jsw" data-r style="--d:200">
+        <div class="logo"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294" style="height:28px"></div>
+        <h3 class="wide">JSW Motors</h3>
+        <p>Established in 2024, JSW Motors is the JSW Group’s entry into next-generation passenger vehicles, built around sustainable, electric solutions for the way India moves next.</p>
+        <ul>
+          <li>Established<b>2024</b></li>
+          <li>Parent<b>$25B JSW Group</b></li>
+          <li>Manufacturing<b>Greenfield facility, Chhatrapati Sambhaji Nagar</b></li>
+          <li>Group sectors<b>Steel, energy, infrastructure, cement, paints &amp; more</b></li>
+        </ul>
+      </div>
+      <div class="joint" aria-hidden="true"><i></i><span>×</span><i></i></div>
+      <div class="side gmg" data-r style="--d:340">
+        <div class="logo"><img src="assets/gmg-logo.png" alt="Gautam Modi Group" width="374" height="337"></div>
+        <h3 class="wide">Gautam Modi Group</h3>
+        <p>An automotive group offering end-to-end mobility, from new and pre-owned cars to service, insurance and finance, with a network spread across the Mumbai Metropolitan Region.</p>
+        <ul>
+          <li>Heritage<b>Since 1932</b></li>
+          <li>Brands<b>Hyundai, Mahindra, Audi, Kia, MG &amp; more</b></li>
+          <li>Services<b>Sales, service, insurance, pre-owned</b></li>
+          <li>Team<b>3,500+ people</b></li>
+        </ul>
+      </div>
+    </div>
+    <div class="promise">
+      <div data-r style="--d:100"><h4>A familiar welcome</h4><p>Showroom and service teams who have been looking after Mumbai’s drivers for over two decades.</p></div>
+      <div data-r style="--d:220"><h4>Ready for electric</h4><p>Experience with EVs across our brands, ready to support JSW Motors’ new-energy vehicles.</p></div>
+      <div data-r style="--d:340"><h4>One relationship</h4><p>From your first test drive to insurance and every service visit after, one group looks after you.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · VALUES -->
+<section id="values" class="scene">
+  <div class="in">
+    <div class="values-head">
+      <div><h2 class="wide" data-r style="--d:120">Values that travel well.</h2></div>
+      <p class="lead" data-r style="--d:240">GMG’s four values sit comfortably beside JSW’s own: Commitment, Courage, Agility, Collaboration and Compassion.</p>
+    </div>
+    <div class="cards">
+      <article class="card" style="--i:0"><div class="n">01</div><div><span class="tag">Customer first</span><h3 class="wide">Grandiose Experience</h3></div><div class="body"><p>Every visit should feel meaningful, with recognition, genuine care and service that goes further than expected.</p><p class="pair">In step with JSW’s <b>Compassion</b></p></div></article>
+      <article class="card" style="--i:1"><div class="n">02</div><div><span class="tag">Growth</span><h3 class="wide">Exploring New Horizons</h3></div><div class="body"><p>From Gwalior to Mumbai, from two-wheelers to electric cars, we keep moving towards what comes next.</p><p class="pair">In step with JSW’s <b>Courage</b> &amp; <b>Agility</b></p></div></article>
+      <article class="card" style="--i:2"><div class="n">03</div><div><span class="tag">People</span><h3 class="wide">Nurturing Talents</h3></div><div class="body"><p>Our people are the brand. We invest in them, so they can look after you.</p><p class="pair">In step with JSW’s <b>Collaboration</b></p></div></article>
+      <article class="card" style="--i:3"><div class="n">04</div><div><span class="tag">Discipline</span><h3 class="wide">Process with Tenacity</h3></div><div class="body"><p>Strong processes turn good intentions into consistent action, at every showroom and every service bay.</p><p class="pair">In step with JSW’s <b>Commitment</b></p></div></article>
+    </div>
+  </div>
+</section>
+
+<!-- 8 · LEADERSHIP -->
+<section id="leaders" class="scene">
+  <div class="in">
+    <h2 class="wide" data-r style="--d:120">Three generations. One standard.</h2>
+    <div class="people">
+      <div class="person founder" data-r style="--d:200"><div class="ph"><img src="assets/about/chimanlal-modi.jpg" width="928" height="1120" alt="Portrait of the late Shri Chimanlal Modi" loading="lazy" decoding="async"></div><h3 class="wide">Late Shri Chimanlal Modi</h3><span class="role">Founder, Modi Auto Corporation</span><p>Founded Modi Auto Corporation in Gwalior in 1932 and set the family’s course in automobiles.</p></div>
+      <div class="person" data-r style="--d:320"><div class="ph"><img src="assets/about/gautam-modi.jpg" width="1080" height="1355" alt="Portrait of Gautam Chimanlal Modi" loading="lazy" decoding="async"></div><h3 class="wide">Gautam Chimanlal Modi</h3><span class="role">Managing Director</span><p>Over 36 years in the automobile industry. A mechanical engineer who built the group from its Hyundai beginnings in Mumbai.</p></div>
+      <div class="person" data-r style="--d:440"><div class="ph"><img src="assets/about/nidhi-modi-chheda.jpg" width="683" height="854" alt="Portrait of Nidhi Modi Chheda" loading="lazy" decoding="async"></div><h3 class="wide">Nidhi Modi Chheda</h3><span class="role">Director</span><p>Over 16 years in the automobile sector, helping lead the group’s growth into new brands and electric mobility.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 · CLOSE + FOOTER -->
+<section id="close" class="scene">
+  <div class="c">
+    <h2 class="wide" data-r>The next chapter starts here.</h2>
+    <p data-r style="--d:250">Be among the first to hear when JSW Motors arrives.</p>
+    <div class="cta-row" data-r style="--d:350">
+      <a class="btn solid" href="/#register">Register interest <svg viewBox="0 0 30 11"><path d="M0 5.5h28M23 1l5 4.5-5 4.5" stroke-width="1.2"/></svg></a>
+      <a class="btn ghost" href="/contact-us">Contact us</a>
+    </div>
+  </div>
+  <footer>
+    <a href="/"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+    <div class="mid"><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">T&amp;C</a></div>
+    <div class="soc"><span>Follow us</span>
+      <a href="https://www.instagram.com/jswmotors_modi.thane?cnvx=dG9memxjNmYyZGh4&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3Zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3ZM17 6a1.1 1.1 0 1 0 1.1 1.1A1.1 1.1 0 0 0 17 6Z"/><path d="M16 2H8a6 6 0 0 0-6 6v8a6 6 0 0 0 6 6h8a6 6 0 0 0 6-6V8a6 6 0 0 0-6-6Zm4.3 14A4.3 4.3 0 0 1 16 20.3H8A4.3 4.3 0 0 1 3.7 16V8A4.3 4.3 0 0 1 8 3.7h8A4.3 4.3 0 0 1 20.3 8Z"/></svg></a>
+      <a href="https://www.linkedin.com/company/jswmotors-modi-thane/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3Zm7 0h3.8v1.6h.1c.5-1 1.9-2 3.9-2 4.1 0 4.9 2.7 4.9 6.2V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4Z"/></svg></a>
+      <a href="https://www.facebook.com/share/1KvKfsXPmi/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+    </div>
+    <div class="copy">© 2026 JSW Motors · Brought closer to you by Gautam Modi Group</div>
+    <div class="copy owner">Owned by Modi Agencies Private Limited</div>
+  </footer>
+</section>
+
+</main>
+
+<script>
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
+
+/* ---------- reveal ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target)}}),{threshold:.2});
+$$('[data-r]').forEach(el=>io.observe(el));
+requestAnimationFrame(()=>$$('#hero .mask').forEach(m=>m.classList.add('show')));
+
+/* ---------- manifesto: split into words; *text* is highlighted ---------- */
+const mt=$('#maniText');
+mt.innerHTML=mt.textContent.split(/(\*[^*]+\*)/).map(chunk=>{
+  const hl=chunk.startsWith('*');const t=hl?chunk.slice(1,-1):chunk;
+  return t.split(/(\s+)/).map(w=>w.trim()?`<span class="w${hl?' hl':''}">${w}</span>`:w).join('');
+}).join('');
+const words=$$('#maniText .w');
+
+/* ---------- count-up ---------- */
+const cio=new IntersectionObserver(es=>es.forEach(e=>{
+  if(!e.isIntersecting)return;cio.unobserve(e.target);
+  const el=e.target,end=+el.dataset.count,fmt=n=>el.hasAttribute('data-sep')?n.toLocaleString('en-IN'):String(n);
+  if(reduce){el.textContent=fmt(end);return}
+  const t0=performance.now(),dur=1800;
+  (function step(t){const k=clamp((t-t0)/dur),e2=1-Math.pow(1-k,4);el.textContent=fmt(Math.round(end*e2));if(k<1)requestAnimationFrame(step)})(t0);
+}),{threshold:.6});
+$$('[data-count]').forEach(el=>cio.observe(el));
+
+/* ---------- scroll-driven scenes ---------- */
+const header=$('#top'),bar=$('#progress');
+const hero=$('#hero'),heroStage=hero.querySelector('.stage');
+const mani=$('#manifesto'),people=$('#people'),photo=$('#photo'),photoImg=photo.querySelector('img'),peopleCopy=$('#peopleCopy'),frameLabel=$('#frameLabel');
+const cards=$$('.card');
+const chapLinks=$$('.chap a'),chapSecs=chapLinks.map(a=>$(a.getAttribute('href')));
+const prog=el=>{const r=el.getBoundingClientRect(),d=r.height-innerHeight;return d>0?clamp(-r.top/d):(r.top<0?1:0)};
+
+function render(){
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight;
+  bar.style.transform=`scaleX(${max>0?y/max:0})`;
+  header.classList.toggle('scrolled',y>40);
+
+  // hero
+  heroStage.style.setProperty("--hp",clamp(scrollY/(innerHeight*.85)).toFixed(4));
+
+  // manifesto words
+  const mp=prog(mani),lit=Math.floor(clamp(mp*1.25)*words.length);
+  words.forEach((w,i)=>w.classList.toggle('on',i<lit));
+
+  // people: window opens to full bleed
+  const pp=prog(people),open=clamp(pp/.55),ease=1-Math.pow(1-open,3);
+  const iy=(1-ease)*22,ix=(1-ease)*28,rad=(1-ease)*18;
+  photo.style.clipPath=`inset(${iy}% ${ix}% round ${rad}px)`;
+  photoImg.style.transform=`scale(${1.22-ease*.22}) translateY(${(pp-.5)*-3}%)`;
+  frameLabel.style.opacity=clamp(1-open*2.5);
+  peopleCopy.classList.toggle('show',pp>.5);
+
+  // values: earlier cards recede as the next one stacks on top
+  cards.forEach((c,i)=>{
+    const nx=cards[i+1];if(!nx){c.style.transform='';c.style.filter='';return}
+    const r=nx.getBoundingClientRect(),k=clamp(1-(r.top-innerHeight*.14)/(innerHeight*.6));
+    c.style.transform=`scale(${1-k*.06})`;c.style.filter=`brightness(${1-k*.45})`;
+  });
+
+  // chapter index
+  const mid=innerHeight*.5;let ci=0;
+  chapSecs.forEach((s,i)=>{if(s.getBoundingClientRect().top<=mid)ci=i});
+  chapLinks.forEach((a,i)=>a.classList.toggle('on',i===ci));
+}
+
+/* ---------- smooth, inertial scrolling (mouse wheel / trackpad); touch & keyboard stay native ---------- */
+let cur=scrollY,tgt=scrollY,raf=0,driving=false;
+const maxY=()=>document.documentElement.scrollHeight-innerHeight;
+function step(){
+  cur+=(tgt-cur)*.085;
+  if(Math.abs(tgt-cur)<.4)cur=tgt;
+  driving=true;scrollTo({top:cur,behavior:'instant'});
+  raf=cur!==tgt?requestAnimationFrame(step):0;
+  if(!raf)driving=false;
+}
+function goTo(y){tgt=clamp(y,0,maxY());if(reduce){scrollTo({top:tgt,behavior:'instant'});cur=tgt;return}if(!raf)raf=requestAnimationFrame(step)}
+if(!reduce&&matchMedia('(pointer:fine)').matches){
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey)return;e.preventDefault();
+    if(!raf)cur=tgt=scrollY;
+    const d=e.deltaMode===1?e.deltaY*40:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
+    goTo(tgt+d);
+  },{passive:false});
+}
+addEventListener('scroll',()=>{if(!raf){cur=tgt=scrollY}render()},{passive:true});
+// in-page links glide too
+$$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=$(a.getAttribute('href'));if(!t)return;e.preventDefault();
+  if(!raf)cur=tgt=scrollY;goTo(t.getBoundingClientRect().top+scrollY);
+}));
+
+addEventListener("resize",render);
+render();
+addEventListener("load",render);
+document.fonts&&document.fonts.ready.then(render);
+})();
+
+/* ---------- phone / tablet menu ---------- */
+(()=>{
+  const btn=document.getElementById('menuBtn'),panel=document.getElementById('mnav');
+  const set=open=>{document.body.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Close menu':'Open menu');panel.setAttribute('aria-hidden',!open)};
+  btn.addEventListener('click',()=>set(!document.body.classList.contains('menu-open')));
+  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+  addEventListener('resize',()=>{if(innerWidth>900)set(false)});
+})();
+
+/* ---------- curves backdrop: gentle parallax as you scroll ---------- */
+(()=>{
+  const cv=document.querySelector('.curves');if(!cv||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  let t=0;const upd=()=>{t=0;const max=document.documentElement.scrollHeight-innerHeight;cv.style.setProperty('--sy',(max>0?scrollY/max:0).toFixed(4))};
+  addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});upd();
+})();
+</script>
+</body>
+</html>

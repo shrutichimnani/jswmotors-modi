@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>JSW Motors | Mobility, Reimagined</title>
+<meta name="description" content="JSW Motors, the JSW Group's entry into next-generation passenger mobility, brought closer to you by Gautam Modi Group in Thane and Kalyan. Register your interest.">
+<meta name="theme-color" content="#050607">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<!-- Official site uses Adobe "New Science" (licensed). Anek Latin is the open fallback JSW itself specifies; width axis gives the extended look. -->
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
+<style>
+:root{
+  /* Palette from jswmotors.com */
+  --black:#000; --bg:#050607; --ink:#0a0a0a;
+  --white:#fff; --g10:#e6e6e6; --g30:#b3b3b3; --g50:#808080; --g70:#4d4d4d; --g90:#191919;
+  --teal-900:#00374c; --teal-700:#317485; --teal-500:#5da0b3; --teal-200:#d8e7e2;
+  --accent:#e0242c;
+  --hl:#5da0b3; /* teal highlight, as on jswmotors.com */
+  --font:'new-science','Anek Latin',Arial,sans-serif;
+  --pad:clamp(24px,6vw,96px);
+  --ease:cubic-bezier(.22,.8,.2,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg)}
+body{background:var(--bg);color:var(--white);font-family:var(--font);font-weight:400;line-height:1.4;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+img{display:block;max-width:100%}
+.wide{font-stretch:125%;font-variation-settings:"wdth" 125}
+
+/* ---------- teal ambient backdrop (after the hero): deep teal water-light, like jswmotors.com ---------- */
+.ambient{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0;overflow:hidden;
+  background:radial-gradient(120% 85% at 72% -12%,#0a2b35 0%,#06171d 34%,#050607 70%)}
+/* soft light shafts falling from the surface */
+.ambient .rays{position:absolute;left:-25%;right:-25%;top:-30%;height:120%;
+  background:repeating-linear-gradient(104deg,transparent 0 7%,rgba(93,160,179,.06) 8%,transparent 10.5%,transparent 15%,rgba(216,231,226,.04) 16%,transparent 18%);
+  filter:blur(14px);transform-origin:50% 0;
+  -webkit-mask-image:radial-gradient(70% 75% at 62% 0%,#000 0%,transparent 78%);mask-image:radial-gradient(70% 75% at 62% 0%,#000 0%,transparent 78%);
+  animation:rays 26s ease-in-out infinite alternate}
+@keyframes rays{from{transform:translateX(-3%) skewX(-2deg)}to{transform:translateX(3%) skewX(2deg)}}
+/* slow, breathing pools of teal light */
+.ambient .pool{position:absolute;border-radius:50%;filter:blur(60px);animation:pool 18s ease-in-out infinite alternate}
+.ambient .pool.a{width:60vw;height:60vw;left:-18vw;bottom:-30vw;background:radial-gradient(circle,#00374c 0%,transparent 70%);opacity:.55}
+.ambient .pool.b{width:42vw;height:42vw;right:-8vw;top:18vh;background:radial-gradient(circle,#317485 0%,transparent 70%);opacity:.14;animation-duration:24s;animation-direction:alternate-reverse}
+@keyframes pool{from{transform:translate(0,0) scale(1)}to{transform:translate(4vw,-3vh) scale(1.08)}}
+.ambient .pool.c{width:46vw;height:46vw;right:-12vw;bottom:-22vw;background:radial-gradient(circle,#5da0b3 0%,transparent 68%);opacity:.12;animation-duration:22s}
+/* a faint surface shimmer line near the top */
+.ambient .surface{position:absolute;left:0;right:0;top:0;height:30vh;background:linear-gradient(#5da0b31a,transparent)}
+
+/* ---------- ambient layers ---------- */
+.vignette{position:fixed;inset:0;z-index:1;pointer-events:none;background:radial-gradient(130% 100% at 50% 45%,transparent 50%,rgba(0,0,0,.55) 100%)}
+.grain{position:fixed;inset:-50%;z-index:2;pointer-events:none;opacity:.06;mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  animation:grain 1.2s steps(6) infinite}
+@keyframes grain{0%{transform:translate(0,0)}25%{transform:translate(-3%,2%)}50%{transform:translate(2%,-3%)}75%{transform:translate(-2%,-1%)}100%{transform:translate(3%,3%)}}
+
+/* ---------- header ---------- */
+header{position:fixed;top:0;left:0;right:0;z-index:50;display:flex;align-items:center;justify-content:space-between;
+  padding:22px var(--pad);transition:background .5s,backdrop-filter .5s,padding .5s}
+header.scrolled{background:linear-gradient(#050607e6,#050607a0 70%,transparent);backdrop-filter:blur(10px);padding-top:14px;padding-bottom:14px}
+.brand img{height:30px;width:auto}
+nav.links{position:absolute;left:50%;transform:translateX(-50%);display:flex;gap:0}
+nav.links a{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:6px 32px;color:var(--g10);position:relative;transition:color .3s;white-space:nowrap}
+nav.links a+a::before{content:"";position:absolute;left:0;top:50%;height:12px;width:1px;background:var(--g70);transform:translateY(-50%)}
+nav.links a:hover{color:var(--white)}
+.btn-pill{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--accent);border-radius:999px;color:var(--white);transition:background .35s,color .35s,box-shadow .35s}
+.btn-pill:hover{background:var(--accent);color:#000;box-shadow:0 0 30px #e0242c55}
+
+/* ---------- scroll progress + chapter index (shared with About Us) ---------- */
+.progress{position:fixed;left:0;top:0;height:2px;width:100%;z-index:60;transform-origin:left;transform:scaleX(0);background:linear-gradient(90deg,#e0242c00,var(--accent));box-shadow:0 0 12px var(--accent)}
+.chap{position:fixed;right:clamp(14px,2.2vw,32px);top:50%;transform:translateY(-50%);z-index:40;display:flex;flex-direction:column;gap:14px;align-items:flex-end}
+.chap a{display:flex;align-items:center;gap:12px;font-size:9px;letter-spacing:.2em;text-transform:uppercase;color:transparent;transition:color .4s}
+.chap a i{width:7px;height:7px;border-radius:50%;border:1px solid var(--g50);transition:background .3s ease,border-color .3s ease,box-shadow .3s ease,transform .3s var(--ease);display:block}
+.chap a:hover{color:var(--g30)}
+.chap a.on i{background:var(--accent);border-color:var(--accent);box-shadow:0 0 12px var(--accent);transform:scale(1.35)}
+/* scenes: each section's content drifts in and settles as it reaches the centre of the screen */
+.scene-in{will-change:transform,opacity}
+
+/* ---------- sections ---------- */
+main{position:relative;z-index:3}
+section{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:120px var(--pad);overflow:hidden}
+.in{position:relative;z-index:2;width:100%;max-width:1500px;margin:0 auto}
+
+h1,h2,h3{font-weight:400;text-transform:uppercase;line-height:1.05}
+h1{font-size:clamp(32px,4.8vw,74px);letter-spacing:.015em}
+h1 em{font-style:normal;color:var(--white);display:block}
+h2{font-size:clamp(24px,3vw,46px);letter-spacing:.03em}
+.eyebrow{display:inline-flex;align-items:center;gap:14px;font-size:11px;letter-spacing:.26em;text-transform:uppercase;color:var(--g30);margin-bottom:18px}
+.eyebrow::before{content:"";width:28px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent)}
+.rule{width:44px;height:2px;background:var(--accent);margin:26px 0;box-shadow:0 0 14px var(--accent)}
+h2+p.lead{margin-top:22px}
+p.lead{text-shadow:0 1px 16px #000,0 0 4px #000c;font-size:clamp(15px,1.25vw,19px);color:var(--g10);max-width:40ch;line-height:1.6}
+.cta{display:inline-flex;align-items:center;gap:16px;margin-top:40px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500}
+.cta span.u{position:relative;padding-bottom:7px}
+.cta span.u::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:32px;background:var(--accent);transition:width .5s var(--ease)}
+.cta:hover span.u::after{width:100%}
+.cta svg{width:38px;height:12px;stroke:var(--accent);fill:none;transition:transform .5s var(--ease)}
+.cta:hover svg{transform:translateX(8px)}
+
+/* reveal */
+[data-r]{opacity:0;transform:translateY(34px);filter:blur(8px);transition:opacity 1.1s var(--ease),transform 1.1s var(--ease),filter 1.1s var(--ease);transition-delay:calc(var(--d,0)*1ms)}
+[data-r].show{opacity:1;transform:none;filter:none}
+.mask{display:block;overflow:hidden}
+.mask>span{display:block;transform:translateY(105%);transition:transform 1.2s var(--ease);transition-delay:calc(var(--d,0)*1ms)}
+.show .mask>span,.mask.show>span{transform:none}
+
+/* 1 · hero: JSW Motors footage, this screen only; it dissolves into the page below */
+#hero{align-items:center}
+#hero .in{opacity:calc(1 - var(--hp,0)*1.4);transform:translateY(calc(var(--hp,0)*-10vh))}
+#hero .hero-video video{transform:scale(calc(1 + var(--hp,0)*.12))}
+#hero .scroll-hint{opacity:calc(1 - var(--hp,0)*3)}
+.hero-video{position:absolute;inset:0;z-index:0;pointer-events:none;
+  -webkit-mask-image:linear-gradient(#000 70%,transparent 100%);mask-image:linear-gradient(#000 70%,transparent 100%)}
+.hero-video video{width:100%;height:100%;object-fit:cover;display:block;opacity:0;transition:opacity 1.6s var(--ease)}
+.hero-video video.ready{opacity:1}
+.hero-video::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.7) 0%,rgba(0,0,0,.3) 50%,rgba(0,0,0,.08) 100%),linear-gradient(180deg,rgba(0,0,0,.5) 0%,transparent 24%)}
+#hero .sub{margin-top:24px;font-size:clamp(16px,1.5vw,22px);color:#fff;font-weight:500;text-shadow:0 2px 18px #000,0 0 3px #0008}
+.byline{display:flex;align-items:center;gap:16px;margin-top:clamp(40px,8vh,80px)}
+.byline img{height:44px;width:auto}
+.byline i{width:1px;height:34px;background:#ffffff40}
+.byline span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--g10);line-height:1.7}
+.byline span b{display:block;color:var(--white);font-weight:500;font-size:13px;letter-spacing:.16em}
+.scroll-hint{position:absolute;bottom:34px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:10px}
+.mouse{width:18px;height:28px;border:1px solid var(--g30);border-radius:10px;position:relative}
+.mouse::after{content:"";position:absolute;left:50%;top:6px;width:2px;height:5px;margin-left:-1px;border-radius:2px;background:var(--accent);animation:wheel 1.8s infinite}
+@keyframes wheel{0%{opacity:0;transform:translateY(0)}30%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
+.scroll-hint i{width:1px;height:34px;background:linear-gradient(var(--g50),transparent)}
+
+/* 2 · JSW Motors */
+#jsw{background:radial-gradient(70% 60% at 90% 40%,#00374c55,transparent 70%)}
+#jsw .in{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(40px,7vw,120px);align-items:center}
+#jsw h2{max-width:16ch}
+.pillars{display:flex;flex-wrap:nowrap;margin-bottom:34px}
+.pillars li{list-style:none;font-size:clamp(10px,.8vw,11px);letter-spacing:.16em;text-transform:uppercase;color:var(--g30);padding:0 clamp(10px,1.3vw,20px);position:relative;white-space:nowrap}
+.pillars li:first-child{padding-left:0}
+.pillars li+li::before{content:"";position:absolute;left:0;top:50%;height:11px;width:1px;background:var(--accent);transform:translateY(-50%)}
+.facts{display:grid;gap:0;border-top:1px solid #ffffff1f}
+.facts div{display:grid;grid-template-columns:minmax(110px,.6fr) 1fr;gap:24px;align-items:baseline;padding:24px 0;border-bottom:1px solid #ffffff14}
+.facts b{font-weight:300;font-size:clamp(28px,3vw,46px);letter-spacing:.02em;font-stretch:125%;font-variation-settings:"wdth" 125;line-height:1}
+.facts b sup{font-size:.45em;vertical-align:top;margin-left:2px}
+.facts span{font-size:14px;color:var(--g10);line-height:1.6}
+
+/* 3 · GMG teaser */
+#gmg{background:radial-gradient(50% 55% at 50% 50%,#5da0b314,transparent 75%)}
+#gmg .in{max-width:820px;text-align:center}
+#gmg .eyebrow{justify-content:center}
+#gmg p.lead{margin-left:auto;margin-right:auto}
+.gmg-head img{height:clamp(64px,6vw,88px);width:auto;margin:0 auto 30px}
+.gmg-head p.lead{margin-top:22px}
+
+/* 4 · register */
+#register{background:radial-gradient(60% 60% at 85% 50%,#00374c40,transparent 70%)}
+#register .in{display:grid;grid-template-columns:1fr 1fr}
+#register .box{grid-column:1;max-width:680px}
+#register p.lead{max-width:36ch;margin-top:18px}
+form[hidden]{display:none}
+form{margin-top:36px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.f{position:relative}
+.f.full{grid-column:1/-1}
+.f input{width:100%;height:54px;background:#0b0e10b3;border:1px solid #ffffff26;border-radius:4px;color:var(--white);font:inherit;font-size:14px;padding:18px 16px 4px;outline:none;transition:border-color .3s,box-shadow .3s,background .3s;backdrop-filter:blur(8px)}
+.f label{position:absolute;left:16px;top:17px;font-size:14px;color:var(--g50);pointer-events:none;transition:top .2s var(--ease),font-size .2s var(--ease),letter-spacing .2s ease,color .2s ease}
+.f input:focus,.f input:not(:placeholder-shown){padding-top:20px}
+.f input:focus+label,.f input:not(:placeholder-shown)+label{top:7px;font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--g10)}
+.f input:focus{border-color:var(--hl);box-shadow:0 0 0 3px #5da0b322;background:#0f1417cc}
+.f.err input{border-color:#e5654f}
+.f small{position:absolute;left:2px;top:57px;font-size:11px;color:#e5654f;opacity:0;transition:opacity .3s}
+.f.err small{opacity:1}
+.submit{grid-column:1/-1;height:54px;margin-top:6px;border:0;border-radius:4px;background:var(--accent);color:#fff;font:inherit;font-weight:600;font-size:12px;letter-spacing:.18em;text-transform:uppercase;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:14px;transition:box-shadow .4s,transform .3s,background .3s;position:relative;overflow:hidden}
+.submit:hover{box-shadow:0 0 40px #e0242c77;background:#f04048}
+.submit svg{width:30px;height:11px;stroke:currentColor;fill:none;transition:transform .4s var(--ease)}
+.submit:hover svg{transform:translateX(6px)}
+.consent{grid-column:1/-1;display:flex;gap:10px;align-items:flex-start;font-size:11px;color:var(--g30);line-height:1.5;margin-top:8px;cursor:pointer}
+.consent input{appearance:none;flex:none;width:14px;height:14px;margin-top:1px;border:1px solid var(--g50);border-radius:2px;cursor:pointer;display:grid;place-items:center;transition:background-color .2s ease,border-color .2s ease}
+.consent input:checked{background:var(--hl);border-color:var(--hl)}
+.consent input:checked::after{content:"";width:6px;height:3px;border-left:2px solid #fff;border-bottom:2px solid #fff;transform:rotate(-45deg) translate(1px,-1px)}
+.consent.err{color:#e5654f}
+.consent a{text-decoration:underline;text-underline-offset:3px}
+.formerr{grid-column:1/-1;margin-top:4px;padding:12px 14px;border:1px solid #e5654f66;border-radius:4px;background:#e5654f14;color:#ffb3a6;font-size:13px}
+.formerr[hidden]{display:none}
+.ok{display:none;margin-top:36px;padding:28px;border:1px solid #e0242c55;border-radius:4px;background:#e0242c0f}
+.ok h3{font-weight:500;letter-spacing:.08em;font-size:18px;color:var(--white)}
+.ok p{margin-top:8px;color:var(--g10);font-size:14px}
+.done form{display:none}.done .ok{display:block}
+
+/* 5 · visit us */
+#visit{background:radial-gradient(70% 50% at 50% 100%,#00374c40,transparent 70%)}
+.visit-head{display:flex;justify-content:space-between;align-items:flex-end;gap:30px;flex-wrap:wrap}
+.places{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:clamp(14px,1.8vw,24px);margin-top:clamp(40px,7vh,70px)}
+.place{position:relative;display:flex;flex-direction:column;padding:clamp(24px,2.4vw,36px);border:1px solid #ffffff17;border-radius:6px;background:linear-gradient(160deg,#11171acc,#070a0bd9);backdrop-filter:blur(8px);transition:border-color .4s,transform .4s var(--ease)}
+.place:hover{border-color:#5da0b380;transform:translateY(-4px)}
+.place .tag{font-size:10px;letter-spacing:.24em;text-transform:uppercase;color:var(--hl)}
+.place h3{margin-top:14px;font-size:clamp(17px,1.5vw,22px);letter-spacing:.04em;line-height:1.2}
+.place h3 small{display:block;margin-top:6px;font-size:12px;letter-spacing:.14em;color:var(--g30)}
+.place address{font-style:normal;margin-top:18px;font-size:14px;color:var(--g10);line-height:1.65;flex:1}
+
+/* 6 · FAQ */
+#faq .in{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(40px,7vw,120px);align-items:start}
+#faq .side{position:sticky;top:140px}
+.qa{border-top:1px solid #ffffff1f}
+.qa details{border-bottom:1px solid #ffffff14}
+.qa summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;gap:24px;padding:24px 0;font-size:clamp(15px,1.25vw,18px);letter-spacing:.01em;color:var(--white);transition:color .3s}
+.qa summary::-webkit-details-marker{display:none}
+.qa summary:hover{color:var(--g10)}
+.qa summary i{position:relative;flex:none;width:14px;height:14px}
+.qa summary i::before,.qa summary i::after{content:"";position:absolute;left:0;right:0;top:50%;height:2px;margin-top:-1px;background:var(--hl);transition:transform .4s var(--ease)}
+.qa summary i::after{transform:rotate(90deg)}
+.qa details[open] summary i::after{transform:rotate(0)}
+.qa .a{padding:0 40px 26px 0;font-size:14px;color:var(--g30);line-height:1.75;max-width:62ch}
+.qa .a a{color:var(--white);text-decoration:underline;text-underline-offset:3px}
+
+/* 7 · closing + footer */
+#close{min-height:auto;padding-top:clamp(90px,16vh,170px);padding-bottom:0;flex-direction:column;align-items:stretch;justify-content:flex-end;background:radial-gradient(70% 50% at 50% 70%,#e0242c18,transparent 70%)}
+#close .c{text-align:center}
+#close h2{font-size:clamp(17px,2vw,30px);letter-spacing:.14em}
+#close .rule{margin:26px auto}
+#close p{color:var(--g30);font-size:14px;letter-spacing:.01em}
+footer{position:relative;z-index:2;margin:clamp(70px,12vh,140px) calc(var(--pad)*-1) 0;border-top:1px solid #ffffff17;padding:30px var(--pad);display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;background:#050607cc;backdrop-filter:blur(8px)}
+footer img{height:32px;width:auto}
+footer .mid{display:flex;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g30)}
+footer .mid a{padding:0 22px;position:relative;transition:color .3s}
+footer .mid a:hover{color:var(--white)}
+footer .mid a+a::before{content:"";position:absolute;left:0;top:50%;height:11px;width:1px;background:var(--accent);transform:translateY(-50%)}
+footer .soc{display:flex;align-items:center;gap:18px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--g30)}
+footer .soc a svg{width:19px;height:19px;fill:#fff;display:block;transition:fill .3s}
+footer .soc a:hover svg{fill:var(--g30)}
+.copy{width:100%;text-align:center;font-size:10px;color:var(--g50);letter-spacing:.06em}
+
+/* ---------- responsive ---------- */
+@media(max-width:1100px){
+  nav.links a{padding:6px 20px}
+  .places{grid-template-columns:1fr 1fr}
+}
+@media(max-width:900px){
+  nav.links{display:none}
+  .chap{display:none}
+  section{padding-top:104px;padding-bottom:72px}
+  #jsw .in,#register .in,#faq .in{grid-template-columns:1fr}
+  #register .box{grid-column:1}
+  #faq .side{position:static}
+  .places{grid-template-columns:1fr}
+  .hero-video::after{background:linear-gradient(180deg,rgba(0,0,0,.6) 0%,rgba(0,0,0,.3) 30%,rgba(0,0,0,.35) 60%,rgba(0,0,0,.75) 100%)}
+  #hero .sub,.cta{text-shadow:0 1px 14px #000,0 0 3px #000a}
+  footer{flex-direction:column;text-align:center}
+}
+@media(max-width:560px){
+  :root{--pad:22px}
+  header{padding:14px var(--pad)}
+  header.scrolled{padding-top:10px;padding-bottom:10px}
+  .brand img{height:24px}
+  .btn-pill{padding:9px 14px;font-size:10px;letter-spacing:.1em}
+  h1{font-size:clamp(30px,9vw,40px)}
+  h2{font-size:clamp(22px,6.4vw,28px)}
+  #close h2{font-size:clamp(17px,4.8vw,22px);letter-spacing:.1em}
+  form{grid-template-columns:1fr;gap:16px 12px}
+  .f input{font-size:16px;height:56px}
+  .f small{top:59px}
+  .submit{height:56px}
+  .consent{font-size:12px}
+  .pillars{flex-wrap:wrap;gap:8px 0}
+  .pillars li{padding:6px 18px 6px 0}
+  .pillars li+li::before{display:none}
+  .facts div{grid-template-columns:1fr;gap:8px}
+  .byline img{height:36px}
+  .cta{margin-top:34px}
+  .qa .a{padding-right:0}
+  footer{padding:26px var(--pad) calc(26px + env(safe-area-inset-bottom));gap:16px}
+  footer .mid{flex-wrap:wrap;justify-content:center;gap:10px 0}
+  footer .mid a{padding:0 14px;white-space:nowrap}
+  footer .mid a+a::before{display:none}
+  footer .mid a:not(:last-child){border-right:1px solid var(--g70)}
+  footer img{height:26px}
+  .scroll-hint{bottom:calc(22px + env(safe-area-inset-bottom))}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *{animation:none!important;transition-duration:.01ms!important}
+  [data-r],.mask>span{opacity:1;transform:none;filter:none}
+}
+@media(hover:none){
+  .btn-pill:hover{background:transparent;color:inherit;box-shadow:none}
+  .cta:hover svg{transform:none}
+  .place:hover{transform:none}
+}
+
+/* ---------- phone / tablet menu ---------- */
+.hr{display:flex;align-items:center;gap:12px}
+.menu-btn{display:none;position:relative;flex:none;width:42px;height:42px;border:1px solid #ffffff38;border-radius:50%;background:#05060766;backdrop-filter:blur(6px);cursor:pointer}
+.menu-btn i{position:absolute;left:13px;right:13px;height:1.5px;background:#fff;border-radius:2px;transition:transform .45s var(--ease),top .45s var(--ease)}
+.menu-btn i:first-child{top:16px}
+.menu-btn i:last-child{top:24px}
+.menu-open .menu-btn i:first-child{top:20px;transform:rotate(45deg)}
+.menu-open .menu-btn i:last-child{top:20px;transform:rotate(-45deg)}
+.mnav{position:fixed;inset:0;z-index:45;display:flex;flex-direction:column;justify-content:center;padding:110px 28px calc(40px + env(safe-area-inset-bottom));
+  background:radial-gradient(90% 60% at 80% 0%,#0a2b35cc,transparent 70%),rgba(5,6,7,.97);backdrop-filter:blur(14px);opacity:0;visibility:hidden;transition:opacity .45s var(--ease),visibility .45s}
+.menu-open .mnav{opacity:1;visibility:visible}
+.mnav a.l{display:flex;justify-content:space-between;align-items:center;padding:20px 0;border-bottom:1px solid #ffffff17;font-size:clamp(24px,7vw,34px);text-transform:uppercase;letter-spacing:.04em;font-stretch:125%;font-variation-settings:"wdth" 125;
+  opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.mnav a.l::after{content:"";width:22px;height:2px;background:var(--accent);box-shadow:0 0 10px var(--accent);opacity:0;transition:opacity .3s}
+.mnav a.l[aria-current]::after{opacity:1}
+.mnav a.l:first-child{border-top:1px solid #ffffff17}
+.mnav .reg{margin-top:36px;height:54px;border-radius:4px;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease)}
+.mnav small{margin-top:26px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--g50);opacity:0;transition:opacity .5s var(--ease)}
+.menu-open .mnav a.l,.menu-open .mnav .reg,.menu-open .mnav small{opacity:1;transform:none}
+.menu-open .mnav a.l:nth-child(1){transition-delay:.08s}
+.menu-open .mnav a.l:nth-child(2){transition-delay:.14s}
+.menu-open .mnav a.l:nth-child(3){transition-delay:.2s}
+.menu-open .mnav .reg{transition-delay:.26s}
+.menu-open .mnav small{transition-delay:.32s}
+body.menu-open{overflow:hidden}
+@media(max-width:900px){.menu-btn{display:block}}
+@media(min-width:901px){.mnav{display:none}}
+@media(max-width:560px){header{gap:12px}.hr{gap:8px}.brand img{height:21px}header .btn-pill{padding:9px 11px;letter-spacing:.07em;font-size:9.5px}}
+
+/* ---------- sculpted curves backdrop: dark surfaces lit along their edges in JSW teal and white ---------- */
+.curves{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden;background:#050607}
+.curves svg{position:absolute;inset:-6% 0;width:100%;height:112%}
+.curves g{will-change:transform;transition:transform .2s linear}
+.curves .cv-l1{transform:translate3d(0,calc(var(--sy,0)*-90px),0);animation:cvA 28s ease-in-out infinite alternate}
+.curves .cv-l2{transform:translate3d(0,calc(var(--sy,0)*60px),0);animation:cvB 34s ease-in-out infinite alternate}
+.curves .cv-l3{transform:translate3d(0,calc(var(--sy,0)*-160px),0)}
+@keyframes cvA{from{translate:-1.5% 0}to{translate:1.5% 0}}
+@keyframes cvB{from{translate:1% 0}to{translate:-1% 0}}
+@media(max-width:900px){.curves svg{inset:-4% -40%;width:180%}}
+
+
+/* ---------- motion & interaction refinements (emil-design-eng) ---------- */
+:root{--ease:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1)}
+/* header: fade the background only; padding no longer animates (layout) */
+header,header.scrolled{transition:background .4s ease,backdrop-filter .4s ease}
+header.scrolled{padding-top:22px;padding-bottom:22px}
+@media(max-width:560px){header.scrolled{padding-top:14px;padding-bottom:14px}}
+/* press feedback on everything clickable */
+.btn-pill{transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.submit{transition:background .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.btn{transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.menu-btn{transition:transform 160ms var(--ease)}
+.btn-pill:active,.submit:active,.btn:active{transform:scale(.97)}
+.menu-btn:active{transform:scale(.95)}
+.menu-open .mnav .reg:active{transform:scale(.97);transition-duration:160ms}
+/* phone menu: open with the drawer curve, close faster than it opens */
+.mnav{transition:opacity .22s ease,visibility .22s}
+.menu-open .mnav{transition:opacity .4s var(--ease-drawer),visibility .4s}
+/* hover effects only where there is a real pointer */
+@media not ((hover:hover) and (pointer:fine)){
+  .btn-pill:hover{background:transparent;color:inherit;box-shadow:none}
+  .cta:hover svg,.submit:hover svg,.btn:hover svg{transform:none}
+  .cta:hover span.u::after{width:32px}
+  .place:hover,.loc:hover{transform:none}
+  .person:hover .ph img{filter:saturate(.92)}
+  .person:hover .ph::before{transform:scaleX(0)}
+}
+/* reduced motion: fewer and gentler, not none: keep the fades, drop the movement */
+@media(prefers-reduced-motion:reduce){
+  [data-r]{opacity:0!important;transform:none!important;filter:none!important;transition:opacity .45s ease!important}
+  [data-r].show{opacity:1!important}
+}
+
+/* ---------- black & white refresh: subtle road-red accent, no teal, no glows ---------- */
+:root{--accent:#a8232b;--hl:#a6a6a6}
+.curves,.ambient,.chap{display:none!important}
+/* section washes off: plain black */
+#jsw,#gmg,#register,#visit,#faq,#close,#numbers,#together,#values,#leaders,#c-form,#c-loc{background:none!important}
+#hero .stage{background:var(--bg)!important}
+.side::before,.loc::before,.loc::after{display:none!important}
+/* no glows anywhere */
+.progress{box-shadow:none!important;background:var(--accent)!important;height:1px}
+nav.links a[aria-current]::after,.person .ph::before,.stat .k::before,.frame-label::before,.frame-label::after,.mnav a.l::after,.joint span{box-shadow:none!important}
+.btn-pill:hover,.submit:hover,.btn.solid:hover{box-shadow:none!important}
+.lock span,.mani p .w.hl.on,.card .n{text-shadow:none!important}
+.submit:hover,.btn.solid:hover{background:#bb2b33!important}
+.btn-pill:hover{background:var(--accent);color:#fff}
+/* neutral greys instead of teal */
+.card{background:linear-gradient(150deg,#161616,#0a0a0a 60%)!important}
+.card .tag{color:var(--g30)!important}
+.place,.loc,#c-form .box,#contact .box,.side{background:linear-gradient(160deg,#161616d9,#0a0a0ae6)!important}
+.place:hover,.loc:hover{border-color:#ffffff33!important}
+.f input:focus{border-color:#ffffff66!important;box-shadow:0 0 0 3px #ffffff12!important}
+.consent input:checked{background:var(--accent)!important;border-color:var(--accent)!important}
+.loc .ic{border-color:#ffffff26!important;background:#ffffff08!important}
+.mnav{background:rgba(5,5,5,.97)!important}
+/* headings: one line on desktop */
+h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
+@media(min-width:901px){
+  main h1,main h2{white-space:nowrap}
+  main section h2.wide{font-size:clamp(22px,2.5vw,40px)!important;max-width:none!important}
+  #c-form h2.wide,#faq h2.wide{font-size:clamp(20px,2.05vw,32px)!important}
+  #jsw h2.wide{font-size:clamp(20px,2.2vw,38px)!important}
+  #jsw .in>div:first-child{display:contents}
+  #jsw .in{row-gap:clamp(28px,5vh,48px)}
+  #jsw h2{grid-column:1/-1}
+  #jsw .in>div:last-child{grid-column:2}
+  #gmg .in{max-width:1200px}
+  .together-head,.values-head>div{max-width:none!important}
+  #hero .hero-copy h1{font-size:clamp(26px,3.4vw,56px)}
+}
+/* ownership line */
+.copy.owner{margin-top:-8px;color:var(--g50)}
+</style>
+</head>
+<body>
+
+<form name="register" method="POST" data-netlify="true" netlify-honeypot="bot-field" hidden><input name="form-name" value="register"><input name="bot-field"><input name="name"><input name="mobile"><input name="city"><input name="consent"></form>
+<div class="curves" id="ambient" aria-hidden="true" style="opacity:0">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <linearGradient id="cvEdge" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#5da0b3" stop-opacity="0"/><stop offset=".3" stop-color="#5da0b3" stop-opacity=".55"/>
+          <stop offset=".62" stop-color="#eef7f7" stop-opacity=".95"/><stop offset=".82" stop-color="#7fc0cc" stop-opacity=".6"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="cvEdge2" x1="1" y1="0" x2="0" y2="0">
+          <stop offset="0" stop-color="#5da0b3" stop-opacity="0"/><stop offset=".25" stop-color="#d8e7e2" stop-opacity=".8"/>
+          <stop offset=".55" stop-color="#5da0b3" stop-opacity=".45"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="cvSurf" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#141b1e"/><stop offset=".35" stop-color="#0b1012"/><stop offset="1" stop-color="#050607"/>
+        </linearGradient>
+        <linearGradient id="cvSurfTop" x1="0" y1="1" x2="0" y2="0">
+          <stop offset="0" stop-color="#121a1d"/><stop offset=".5" stop-color="#090d0f"/><stop offset="1" stop-color="#050607"/>
+        </linearGradient>
+        <radialGradient id="cvFlare"><stop offset="0" stop-color="#ffffff" stop-opacity=".55"/><stop offset=".35" stop-color="#bfe3e8" stop-opacity=".18"/><stop offset="1" stop-color="#5da0b3" stop-opacity="0"/></radialGradient>
+        <filter id="cvSheen" x="-10%" y="-100%" width="120%" height="300%"><feGaussianBlur stdDeviation="28"/></filter>
+        <filter id="cvGlow" x="-10%" y="-50%" width="120%" height="200%"><feGaussianBlur stdDeviation="7"/></filter>
+      </defs>
+      <g class="cv-l1">
+        <path d="M-200 790 C 300 760 820 610 1800 330 L1800 1300 L-200 1300 Z" fill="url(#cvSurf)"/>
+        <path d="M-200 850 C 300 820 820 670 1800 390" fill="none" stroke="#5da0b3" stroke-width="120" opacity=".07" filter="url(#cvSheen)"/>
+        <path d="M-200 790 C 300 760 820 610 1800 330" fill="none" stroke="url(#cvEdge)" stroke-width="12" opacity=".35" filter="url(#cvGlow)"/>
+        <path d="M-200 790 C 300 760 820 610 1800 330" fill="none" stroke="url(#cvEdge)" stroke-width="1.6"/>
+        <circle cx="1210" cy="500" r="150" fill="url(#cvFlare)" opacity=".32"/>
+      </g>
+      <g class="cv-l2">
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20 L1800 -300 L-200 -300 Z" fill="url(#cvSurfTop)"/>
+        <path d="M-200 250 C 250 280 700 240 1050 150 C 1300 85 1520 10 1800 -30" fill="none" stroke="#d8e7e2" stroke-width="100" opacity=".05" filter="url(#cvSheen)"/>
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20" fill="none" stroke="url(#cvEdge2)" stroke-width="10" opacity=".3" filter="url(#cvGlow)"/>
+        <path d="M-200 300 C 250 330 700 290 1050 200 C 1300 135 1520 60 1800 20" fill="none" stroke="url(#cvEdge2)" stroke-width="1.4"/>
+        <circle cx="1380" cy="95" r="120" fill="url(#cvFlare)" opacity=".5"/>
+      </g>
+      <g class="cv-l3">
+        <path d="M-200 600 C 350 640 900 560 1800 400" fill="none" stroke="#5da0b3" stroke-opacity=".22" stroke-width="1"/>
+        <path d="M-200 905 C 500 880 1100 760 1800 640" fill="none" stroke="#ffffff" stroke-opacity=".12" stroke-width="1"/>
+      </g>
+    </svg>
+</div>
+<div class="progress" id="progress"></div>
+<div class="vignette"></div>
+<div class="grain"></div>
+
+<header id="top">
+  <a class="brand" href="#hero" aria-label="JSW Motors"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <nav class="links" aria-label="Primary">
+    <a href="#jsw">The Vision</a>
+    <a href="/about-us">About Us</a>
+    <a href="/contact-us">Contact Us</a>
+  </nav>
+  <div class="hr">
+    <a class="btn-pill" href="#register">Register Interest</a>
+    <button class="menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mnav"><i></i><i></i></button>
+  </div>
+</header>
+
+<nav class="mnav" id="mnav" aria-label="Menu" aria-hidden="true">
+  <a class="l" href="#jsw">The Vision</a>
+  <a class="l" href="/about-us">About Us</a>
+  <a class="l" href="/contact-us">Contact Us</a>
+  <a class="reg" href="#register">Register interest</a>
+  <small>JSW Motors · Brought closer to you by Gautam Modi Group</small>
+</nav>
+
+
+<main>
+
+<!-- 1 · HERO -->
+<section id="hero">
+  <div class="hero-video" aria-hidden="true"><video id="heroVid" src="assets/jsw-hero.mp4" autoplay muted loop playsinline preload="auto"></video></div>
+  <div class="in">
+    <h1 class="wide">
+      <span class="mask"><span style="--d:200">Mobility,</span></span>
+      <em class="mask"><span style="--d:380">Reimagined.</span></em>
+    </h1>
+    <p class="sub" data-r style="--d:900">A new journey is about to begin.</p>
+    <a class="cta" href="#jsw" data-r style="--d:1100"><span class="u">Discover what’s next</span>
+      <svg viewBox="0 0 38 12"><path d="M0 6h36M31 1l5 5-5 5" stroke-width="1.2"/></svg></a>
+    <div class="byline" data-r style="--d:1300">
+      <img src="assets/gmg-logo.png" alt="Gautam Modi Group" width="374" height="337"><i></i>
+      <span>Brought to you by<b>Gautam Modi Group</b></span>
+    </div>
+  </div>
+  <div class="scroll-hint" aria-hidden="true"><div class="mouse"></div><i></i></div>
+</section>
+
+<!-- 2 · JSW MOTORS (a new name, built on something bigger) -->
+<section id="jsw">
+  <div class="in">
+    <div>
+      <h2 class="wide" data-r style="--d:100">A new name. Built on something bigger.</h2>
+      <p class="lead" data-r style="--d:300">Introducing JSW Motors, the JSW Group’s entry into next-generation passenger mobility, designed for the way India moves next.</p>
+    </div>
+    <div>
+      <ul class="pillars" data-r style="--d:200"><li>Engineering</li><li>Innovation</li><li>Progress</li><li>Sustainability</li></ul>
+      <div class="facts">
+        <div data-r style="--d:300"><b>2024</b><span>JSW Motors established</span></div>
+        <div data-r style="--d:420"><b>$25<sup>B</sup></b><span>JSW Group, one of India’s fastest-growing conglomerates</span></div>
+        <div data-r style="--d:540"><b>EV</b><span>Greenfield manufacturing facility in Chhatrapati Sambhaji Nagar, Maharashtra</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 3 · GAUTAM MODI GROUP (teaser for About Us) -->
+<section id="gmg">
+  <div class="in">
+    <div class="gmg-head">
+      <img src="assets/gmg-logo.png" alt="Gautam Modi Group" width="374" height="337" data-r>
+      <h2 class="wide" data-r style="--d:150">A new journey. A trusted partner.</h2>
+      <p class="lead" data-r style="--d:250">JSW Motors comes to Thane and Kalyan through Gautam Modi Group, one of the region’s most experienced automotive families.</p>
+      <a class="cta" href="/about-us" data-r style="--d:350"><span class="u">Read our story</span>
+        <svg viewBox="0 0 38 12"><path d="M0 6h36M31 1l5 5-5 5" stroke-width="1.2"/></svg></a>
+    </div>
+  </div>
+</section>
+
+<!-- 4 · REGISTER -->
+<section id="register">
+  <div class="in">
+    <div class="box" id="box">
+      <h2 class="wide" data-r style="--d:100">Be among the first.</h2>
+      <p class="lead" data-r style="--d:150">Stay updated on the launch of JSW Motors and its upcoming vehicles.</p>
+      <form id="form" novalidate data-r style="--d:300">
+        <div class="f"><input id="fname" name="name" placeholder=" " autocomplete="name" required><label for="fname">Full Name</label><small>Please enter your name</small></div>
+        <div class="f"><input id="fphone" name="mobile" placeholder=" " type="tel" inputmode="numeric" autocomplete="tel-national" maxlength="14" required><label for="fphone">Mobile Number</label><small>Enter a valid 10-digit mobile number</small></div>
+        <div class="f full"><input id="fcity" name="city" placeholder=" " autocomplete="address-level2" required><label for="fcity">City</label><small>Please enter your city</small></div>
+        <button class="submit" type="submit">Register interest <svg viewBox="0 0 30 11"><path d="M0 5.5h28M23 1l5 4.5-5 4.5" stroke-width="1.2"/></svg></button>
+        <label class="consent" id="consent"><input type="checkbox" id="fconsent"><span>I agree to receive updates from Gautam Modi Group. See our <a href="/privacy-policy" target="_blank" rel="noopener">Privacy Policy</a>.</span></label>
+        <p class="formerr" id="formError" role="alert" hidden></p>
+      </form>
+      <div class="ok" role="status"><h3>You’re on the list.</h3><p>Thank you. We’ll keep you updated on the launch of JSW Motors.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · VISIT US -->
+<section id="visit">
+  <div class="in">
+    <div class="visit-head">
+      <div>
+        <h2 class="wide" data-r style="--d:100">Find JSW Motors near you.</h2>
+      </div>
+    </div>
+    <div class="places">
+      <article class="place" data-r style="--d:200">
+        <span class="tag">Showroom</span>
+        <h3 class="wide">JSW Motors Modi Thane<small>Times Square Showroom</small></h3>
+        <address>Plot no. A11, B17, Lal Bahadur Shastri Marg, next to MIDC Colony, near Raheja Gardens, Thane, Maharashtra 400604</address>
+      </article>
+      <article class="place" data-r style="--d:320">
+        <span class="tag">Showroom</span>
+        <h3 class="wide">JSW Motors Modi Kalyan<small>Atlantic</small></h3>
+        <address>Kalyan–Bhiwandi Road, near Ved Hospital, Jambhulwadi, Kon, Kongaon, Kalyan, Maharashtra 421311</address>
+      </article>
+      <article class="place" data-r style="--d:440">
+        <span class="tag">Workshop</span>
+        <h3 class="wide">JSW Motors Modi Thane<small>Service workshop</small></h3>
+        <address>Unit S, Kothari Compound, Manpada, Thane West, Thane, Maharashtra 400607</address>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · FAQ -->
+<section id="faq">
+  <div class="in">
+    <div class="side">
+      <h2 class="wide" data-r style="--d:100">Questions, answered.</h2>
+      <p class="lead" data-r style="--d:200">Can’t find what you’re looking for? <a href="/contact-us" style="text-decoration:underline;text-underline-offset:3px">Get in touch</a>.</p>
+    </div>
+    <div class="qa" data-r style="--d:200">
+      <details><summary>What is JSW Motors?<i></i></summary><div class="a">JSW Motors is the JSW Group’s passenger vehicle company, established in 2024 to build next-generation, sustainable vehicles for India. Its greenfield manufacturing facility is in Chhatrapati Sambhaji Nagar, Maharashtra.</div></details>
+      <details><summary>Who is Gautam Modi Group?<i></i></summary><div class="a">Gautam Modi Group is an automotive group whose family roots in the business go back to 1932. It represents brands including Hyundai, Mahindra, Audi, Kia and MG, and now brings JSW Motors to Thane and Kalyan. <a href="/about-us">Read our story</a>.</div></details>
+      <details><summary>When will JSW Motors vehicles be available?<i></i></summary><div class="a">Launch details haven’t been announced yet. <a href="#register">Register your interest</a> and we’ll let you know as soon as there’s news.</div></details>
+      <details><summary>Where can I see JSW Motors vehicles?<i></i></summary><div class="a">At our showrooms in Thane (Times Square, LBS Marg) and Kalyan (Atlantic, Kalyan–Bhiwandi Road).</div></details>
+      <details><summary>How do I book a test drive?<i></i></summary><div class="a">Test drives will open once vehicles are available. <a href="#register">Register your interest</a> or <a href="/contact-us">contact us</a>, and our team will reach out when bookings open.</div></details>
+      <details><summary>Where will my JSW Motors car be serviced?<i></i></summary><div class="a">At our JSW Motors Modi Thane workshop in Kothari Compound, Manpada, Thane West.</div></details>
+      <details><summary>What happens after I register?<i></i></summary><div class="a">Our team will keep you updated about the JSW Motors launch by phone, SMS, WhatsApp or email. You can withdraw your consent at any time. See our <a href="/privacy-policy">Privacy Policy</a>.</div></details>
+    </div>
+  </div>
+</section>
+
+<!-- 7 · CLOSING + FOOTER -->
+<section id="close">
+  <div class="c">
+    <h2 class="wide" data-r>The next chapter starts here.</h2>
+    <p data-r style="--d:250">JSW Motors, brought closer to you by Gautam Modi Group.</p>
+  </div>
+  <footer>
+    <a href="#hero"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+    <div class="mid"><a href="/privacy-policy">Privacy Policy</a><a href="/terms-and-conditions">T&amp;C</a></div>
+    <div class="soc"><span>Follow us</span>
+      <a href="https://www.instagram.com/jswmotors_modi.thane?cnvx=dG9memxjNmYyZGh4&amp;utm_source=qr" target="_blank" rel="noopener noreferrer" aria-label="Instagram"><svg viewBox="0 0 24 24"><path d="M12 7.3A4.7 4.7 0 1 0 16.7 12 4.7 4.7 0 0 0 12 7.3Zm0 7.7a3 3 0 1 1 3-3 3 3 0 0 1-3 3ZM17 6a1.1 1.1 0 1 0 1.1 1.1A1.1 1.1 0 0 0 17 6Z"/><path d="M16 2H8a6 6 0 0 0-6 6v8a6 6 0 0 0 6 6h8a6 6 0 0 0 6-6V8a6 6 0 0 0-6-6Zm4.3 14A4.3 4.3 0 0 1 16 20.3H8A4.3 4.3 0 0 1 3.7 16V8A4.3 4.3 0 0 1 8 3.7h8A4.3 4.3 0 0 1 20.3 8Z"/></svg></a>
+      <a href="https://www.linkedin.com/company/jswmotors-modi-thane/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5ZM3 9.5h4V21H3Zm7 0h3.8v1.6h.1c.5-1 1.9-2 3.9-2 4.1 0 4.9 2.7 4.9 6.2V21h-4v-5c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4Z"/></svg></a>
+      <a href="https://www.facebook.com/share/1KvKfsXPmi/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook"><svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.56 9.88v-6.99H7.9V12h2.54V9.8c0-2.5 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56V12h2.78l-.44 2.89h-2.34v6.99A10 10 0 0 0 22 12Z"/></svg></a>
+    </div>
+    <div class="copy">© 2026 JSW Motors · Brought closer to you by Gautam Modi Group</div>
+    <div class="copy owner">Owned by Modi Agencies Private Limited</div>
+  </footer>
+</section>
+
+</main>
+
+<script>
+(()=>{
+const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+
+/* ---------- reveal on scroll ---------- */
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('show')}}),{threshold:.2});
+document.querySelectorAll('[data-r]').forEach(el=>io.observe(el));
+// hero mask lines reveal immediately
+requestAnimationFrame(()=>document.querySelectorAll('#hero .mask').forEach(m=>m.classList.add('show')));
+
+/* ---------- scroll-driven scenes (same feel as About Us) ---------- */
+const clamp=(v,a=0,b=1)=>Math.min(b,Math.max(a,v));
+const header=document.getElementById('top'),bar=document.getElementById('progress');
+const heroSec=document.getElementById('hero');
+const chapLinks=[...document.querySelectorAll('.chap a')],chapSecs=chapLinks.map(a=>document.querySelector(a.getAttribute('href')));
+const scenes=[...document.querySelectorAll('main section:not(#hero):not(#close) > .in')];
+scenes.forEach(el=>el.classList.add('scene-in'));
+const ambient=document.getElementById('ambient');
+const deep=()=>!reduce&&innerWidth>900;
+function render(){
+  const y=scrollY,max=document.documentElement.scrollHeight-innerHeight,vh=innerHeight;
+  bar.style.transform=`scaleX(${max>0?y/max:0})`;
+  header.classList.toggle('scrolled',y>40);
+  heroSec.style.setProperty('--hp',clamp(y/(vh*.85)).toFixed(4));
+  // teal ambience fades in as the hero leaves
+  ambient.style.opacity=clamp((y-heroSec.offsetHeight*.25)/(heroSec.offsetHeight*.6)).toFixed(3);
+  // depth: content rises in from below, settles while on screen, then lifts away and fades
+  scenes.forEach(el=>{
+    if(!deep()){el.style.transform='';el.style.opacity='';return}
+    const r=el.parentElement.getBoundingClientRect();
+    let d=0;if(r.top>0)d=r.top/vh;else if(r.bottom<vh)d=(r.bottom-vh)/vh;
+    d=clamp(d,-1,1);
+    el.style.transform=`translate3d(0,${d*70}px,0) scale(${1-Math.abs(d)*.05})`;
+    el.style.opacity=clamp(1-Math.max(0,Math.abs(d)-.3)*1.8).toFixed(3);
+  });
+  const mid=vh*.5;let ci=0;
+  chapSecs.forEach((s,i)=>{if(s.getBoundingClientRect().top<=mid)ci=i});
+  chapLinks.forEach((a,i)=>a.classList.toggle('on',i===ci));
+}
+
+/* ---------- smooth, inertial scrolling (mouse wheel / trackpad); touch & keyboard stay native ---------- */
+let cur=scrollY,tgt=scrollY,raf=0;
+const maxY=()=>document.documentElement.scrollHeight-innerHeight;
+function step(){
+  cur+=(tgt-cur)*.085;
+  if(Math.abs(tgt-cur)<.4)cur=tgt;
+  scrollTo({top:cur,behavior:'instant'});
+  raf=cur!==tgt?requestAnimationFrame(step):0;
+}
+function goTo(y){tgt=clamp(y,0,maxY());if(reduce){scrollTo({top:tgt,behavior:'instant'});cur=tgt;return}if(!raf)raf=requestAnimationFrame(step)}
+if(!reduce&&matchMedia('(pointer:fine)').matches){
+  addEventListener('wheel',e=>{
+    if(e.ctrlKey)return;e.preventDefault();
+    if(!raf)cur=tgt=scrollY;
+    const d=e.deltaMode===1?e.deltaY*40:e.deltaMode===2?e.deltaY*innerHeight:e.deltaY;
+    goTo(tgt+d);
+  },{passive:false});
+}
+addEventListener('scroll',()=>{if(!raf){cur=tgt=scrollY}render()},{passive:true});
+// in-page links glide too
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
+  const t=document.querySelector(a.getAttribute('href'));if(!t)return;e.preventDefault();
+  if(!raf)cur=tgt=scrollY;goTo(t.getBoundingClientRect().top+scrollY);
+}));
+addEventListener('resize',render);render();addEventListener('load',render);
+
+/* ---------- hero footage: fade in once playable; only play while the hero is on screen ---------- */
+const hvid=document.getElementById('heroVid');
+const markReady=()=>hvid.classList.add('ready');
+if(hvid.readyState>=3)markReady();else hvid.addEventListener('canplay',markReady,{once:true});
+if(reduce){hvid.removeAttribute('autoplay');hvid.pause()}
+let heroVisible=true;
+const play=()=>{if(!reduce&&heroVisible&&!document.hidden)hvid.play().catch(()=>{});else hvid.pause()};
+new IntersectionObserver(es=>{heroVisible=es[0].isIntersecting;play()}).observe(document.getElementById('hero'));
+document.addEventListener('visibilitychange',play);
+
+/* ---------- FAQ: one answer open at a time ---------- */
+const qas=[...document.querySelectorAll('.qa details')];
+qas.forEach(d=>d.addEventListener('toggle',()=>{if(d.open)qas.forEach(o=>{if(o!==d)o.open=false})}));
+
+/* ---------- form ---------- */
+const form=document.getElementById('form'),box=document.getElementById('box'),consent=document.getElementById('consent');
+const phone=document.getElementById('fphone');
+phone.addEventListener('input',()=>{phone.value=phone.value.replace(/[^\d+\s-]/g,'')});
+const rules={fname:v=>v.trim().length>1,fphone:v=>{const d=v.replace(/\D/g,'');return d.length===10||(d.length===12&&d.startsWith('91'))},fcity:v=>v.trim().length>1};
+Object.keys(rules).forEach(id=>{const el=document.getElementById(id);el.addEventListener('blur',()=>el.parentElement.classList.toggle('err',!rules[id](el.value)));el.addEventListener('input',()=>el.parentElement.classList.remove('err'))});
+document.getElementById('fconsent').addEventListener('change',()=>consent.classList.remove('err'));
+form.addEventListener('submit',async e=>{
+  e.preventDefault();
+  let ok=true;
+  Object.keys(rules).forEach(id=>{const el=document.getElementById(id),v=rules[id](el.value);el.parentElement.classList.toggle('err',!v);if(!v)ok=false});
+  const c=document.getElementById('fconsent').checked;consent.classList.toggle('err',!c);if(!c)ok=false;
+  if(!ok)return;
+  // Google Apps Script web app (writes a row to Google Sheets)
+  const SHEETS_URL='https://script.google.com/macros/s/AKfycbxtNzAHkoPLRH1aBq5rsvm4lL5ZnAVKrHlhITBl4ANf_7kLqm4pIIlojcjGh2vMsyA/exec';
+  const formData={
+    fullName:fname.value.trim(),
+    mobileNumber:fphone.value.replace(/[^0-9]/g,'').slice(-10),
+    city:fcity.value.trim()
+  };
+  const btn=form.querySelector('.submit'),errBox=document.getElementById('formError');
+  errBox.hidden=true;btn.disabled=true;
+  try{
+    // text/plain keeps this a "simple" request, so the browser sends no CORS preflight (Apps Script can't answer one)
+    await fetch(SHEETS_URL,{method:'POST',body:JSON.stringify(formData),headers:{'Content-Type':'text/plain'}});
+  }catch(err){
+    console.error(err);
+    errBox.textContent='Something went wrong, please try again.';errBox.hidden=false;
+    btn.disabled=false;return;
+  }
+  btn.disabled=false;
+  form.reset();
+  form.querySelectorAll('.err').forEach(el=>el.classList.remove('err'));
+  consent.classList.remove('err');
+  box.classList.add('done');
+});
+})();
+
+/* ---------- phone / tablet menu ---------- */
+(()=>{
+  const btn=document.getElementById('menuBtn'),panel=document.getElementById('mnav');
+  const set=open=>{document.body.classList.toggle('menu-open',open);btn.setAttribute('aria-expanded',open);btn.setAttribute('aria-label',open?'Close menu':'Open menu');panel.setAttribute('aria-hidden',!open)};
+  btn.addEventListener('click',()=>set(!document.body.classList.contains('menu-open')));
+  panel.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+  addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+  addEventListener('resize',()=>{if(innerWidth>900)set(false)});
+})();
+
+/* ---------- curves backdrop: gentle parallax as you scroll ---------- */
+(()=>{
+  const cv=document.querySelector('.curves');if(!cv||matchMedia('(prefers-reduced-motion:reduce)').matches)return;
+  let t=0;const upd=()=>{t=0;const max=document.documentElement.scrollHeight-innerHeight;cv.style.setProperty('--sy',(max>0?scrollY/max:0).toFixed(4))};
+  addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});upd();
+})();
+</script>
+</body>
+</html>

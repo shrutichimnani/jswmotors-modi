@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy | JSW Motors</title>
+<meta name="description" content="How Gautam Modi Group collects and uses your details when you register your interest in JSW Motors.">
+<meta name="theme-color" content="#050607">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050607;--white:#fff;--g10:#e6e6e6;--g30:#b3b3b3;--g50:#808080;--g70:#4d4d4d;--accent:#e0242c;--font:'new-science','Anek Latin',Arial,sans-serif;--pad:clamp(24px,6vw,96px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+.bgimg{position:fixed;inset:0;z-index:0;background:#000 url("assets/frames/f089.jpg") center/cover no-repeat;opacity:.55}
+.bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.65) 40%,rgba(0,0,0,.9))}
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);background:linear-gradient(#050607e6,#050607a0 70%,transparent);backdrop-filter:blur(10px)}
+header img{height:28px;width:auto;display:block}
+.btn-pill{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--accent);border-radius:999px;text-decoration:none;transition:background .35s,color .35s}
+.btn-pill:hover{background:var(--accent)}
+main{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:150px var(--pad) 80px}
+h1{font-weight:400;text-transform:uppercase;letter-spacing:.04em;font-stretch:125%;font-variation-settings:"wdth" 125;font-size:clamp(26px,3.6vw,48px);line-height:1.1}
+.rule{width:44px;height:2px;background:var(--accent);margin:24px 0 18px;box-shadow:0 0 14px var(--accent)}
+.meta{font-size:13px;color:var(--g30)}
+h2{margin-top:44px;font-weight:500;font-size:clamp(17px,1.6vw,21px);letter-spacing:.02em;color:var(--white)}
+p,li{margin-top:12px;font-size:15px;color:var(--g10)}
+ul{padding-left:20px}
+li{margin-top:6px}
+a.l{text-decoration:underline;text-underline-offset:3px}
+a.l:hover{color:var(--g30)}
+footer{position:relative;z-index:2;border-top:1px solid #ffffff17;padding:28px var(--pad);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:#050607cc;backdrop-filter:blur(8px);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g30)}
+footer img{height:30px;width:auto;display:block}
+@media(max-width:560px){header img{height:22px}.btn-pill{padding:9px 14px}main{padding-top:120px}}
+@media(max-width:560px){:root{--pad:22px}h1{font-size:clamp(24px,7.5vw,32px)}p,li{font-size:15px}footer{flex-direction:column;text-align:center;padding-bottom:calc(26px + env(safe-area-inset-bottom))}}
+
+
+/* ---------- motion & interaction refinements (emil-design-eng) ---------- */
+:root{--ease:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1)}
+/* header: fade the background only; padding no longer animates (layout) */
+header,header.scrolled{transition:background .4s ease,backdrop-filter .4s ease}
+header.scrolled{padding-top:22px;padding-bottom:22px}
+@media(max-width:560px){header.scrolled{padding-top:14px;padding-bottom:14px}}
+/* press feedback on everything clickable */
+.btn-pill{transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.submit{transition:background .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.btn{transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.menu-btn{transition:transform 160ms var(--ease)}
+.btn-pill:active,.submit:active,.btn:active{transform:scale(.97)}
+.menu-btn:active{transform:scale(.95)}
+.menu-open .mnav .reg:active{transform:scale(.97);transition-duration:160ms}
+/* phone menu: open with the drawer curve, close faster than it opens */
+.mnav{transition:opacity .22s ease,visibility .22s}
+.menu-open .mnav{transition:opacity .4s var(--ease-drawer),visibility .4s}
+/* hover effects only where there is a real pointer */
+@media not ((hover:hover) and (pointer:fine)){
+  .btn-pill:hover{background:transparent;color:inherit;box-shadow:none}
+  .cta:hover svg,.submit:hover svg,.btn:hover svg{transform:none}
+  .cta:hover span.u::after{width:32px}
+  .place:hover,.loc:hover{transform:none}
+  .person:hover .ph img{filter:saturate(.92)}
+  .person:hover .ph::before{transform:scaleX(0)}
+}
+/* reduced motion: fewer and gentler, not none: keep the fades, drop the movement */
+@media(prefers-reduced-motion:reduce){
+  [data-r]{opacity:0!important;transform:none!important;filter:none!important;transition:opacity .45s ease!important}
+  [data-r].show{opacity:1!important}
+}
+
+/* ---------- black & white refresh ---------- */
+:root{--accent:#a8232b}
+.btn-pill:hover{background:var(--accent);color:#fff;box-shadow:none!important}
+</style>
+</head>
+<body>
+<div class="bgimg"></div>
+<header>
+  <a href="/" aria-label="JSW Motors home"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <a class="btn-pill" href="/#register">Register Interest</a>
+</header>
+
+<main>
+  <h1>Privacy Policy</h1>
+  <div class="rule"></div>
+  <p class="meta">Last updated: 24 November 2026</p>
+
+  <p>This Privacy Policy explains how Gautam Modi Group (“<strong>we</strong>”, “<strong>us</strong>”) collects, uses and protects your personal information when you visit this website and register your interest in JSW Motors and its upcoming vehicles.</p>
+
+  <h2>1. Information we collect</h2>
+  <p>When you use the “Register Interest” form, we collect:</p>
+  <ul>
+    <li>Your full name</li>
+    <li>Your mobile number</li>
+    <li>Your city</li>
+    <li>Your consent to receive updates</li>
+  </ul>
+  <p>We may also receive basic technical information, such as your browser type and pages visited, when you use the site.</p>
+
+  <h2>2. How we use your information</h2>
+  <ul>
+    <li>To keep you updated about the launch of JSW Motors and its upcoming vehicles.</li>
+    <li>To contact you by phone, SMS, WhatsApp or email about launch updates, reservations and related offers, where you have agreed to this.</li>
+    <li>To understand interest by city and improve our services.</li>
+  </ul>
+  <p>We process your information only with your consent, which you give by ticking the consent box on the form.</p>
+
+  <h2>3. Sharing your information</h2>
+  <p>We do not sell your personal information. We may share it with JSW Motors and with service providers who help us run this website and contact you, only as needed for the purposes above and under obligations to keep it confidential. We may also disclose information where the law requires it.</p>
+
+  <h2>4. How long we keep it</h2>
+  <p>We keep your information only for as long as needed to keep you updated about the launch and to meet our legal obligations, after which we delete it or make it anonymous.</p>
+
+  <h2>5. Security</h2>
+  <p>We take reasonable technical and organisational steps to protect your information from unauthorised access, loss or misuse. No method of transmission over the internet is completely secure, so we cannot guarantee absolute security.</p>
+
+  <h2>6. Your rights</h2>
+  <p>Under applicable Indian law, including the Digital Personal Data Protection Act, 2023, you may:</p>
+  <ul>
+    <li>Ask to see the personal information we hold about you.</li>
+    <li>Ask us to correct or update it.</li>
+    <li>Withdraw your consent or ask us to delete your information at any time.</li>
+    <li>Make a complaint about how we handle your information.</li>
+  </ul>
+  <p>To use any of these rights, or to stop receiving updates, contact us using the details below.</p>
+
+  <h2>7. Cookies</h2>
+  <p>This website does not use advertising cookies. If we add analytics or similar tools in future, we will update this policy and ask for your consent where required.</p>
+
+  <h2>8. Links to other sites</h2>
+  <p>Our footer links to our social media pages (Instagram, LinkedIn and Facebook). Those platforms have their own privacy policies, and we are not responsible for how they handle your information.</p>
+
+  <h2>9. Changes to this policy</h2>
+  <p>We may update this policy from time to time. The date at the top shows when it was last changed.</p>
+
+  <h2>10. Contact us</h2>
+  <p>Gautam Modi Group<br>
+  Phone: <a class="l" href="tel:+917567006665">+91 75670 06665</a></p>
+</main>
+
+<footer>
+  <a href="/"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <a href="/terms-and-conditions" style="text-decoration:underline;text-underline-offset:3px">Terms &amp; Conditions</a>
+  <span>© 2026 JSW Motors · Brought closer to you by Gautam Modi Group · Owned by Modi Agencies Private Limited</span>
+</footer>
+</body>
+</html>

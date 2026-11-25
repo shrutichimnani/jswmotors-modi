@@ -1,0 +1,13 @@
+{
+  "name": "jsw-motors-gmg",
+  "version": "1.0.0",
+  "private": true,
+  "description": "JSW Motors landing page, brought closer to you by Gautam Modi Group",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

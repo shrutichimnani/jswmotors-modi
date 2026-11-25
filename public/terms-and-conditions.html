@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Terms &amp; Conditions | JSW Motors</title>
+<meta name="description" content="Terms and conditions for using the JSW Motors website operated by Gautam Modi Group.">
+<meta name="theme-color" content="#050607">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#050607;--white:#fff;--g10:#e6e6e6;--g30:#b3b3b3;--g50:#808080;--g70:#4d4d4d;--accent:#e0242c;--font:'new-science','Anek Latin',Arial,sans-serif;--pad:clamp(24px,6vw,96px)}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:var(--bg);scroll-behavior:smooth}
+body{background:var(--bg);color:var(--white);font-family:var(--font);line-height:1.6;letter-spacing:-.01em;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit}
+.bgimg{position:fixed;inset:0;z-index:0;background:#000 url("assets/frames/f089.jpg") center/cover no-repeat;opacity:.55}
+.bgimg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.8),rgba(0,0,0,.65) 40%,rgba(0,0,0,.9))}
+header{position:fixed;top:0;left:0;right:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px var(--pad);background:linear-gradient(#050607e6,#050607a0 70%,transparent);backdrop-filter:blur(10px)}
+header img{height:28px;width:auto;display:block}
+.btn-pill{font-size:11px;letter-spacing:.14em;text-transform:uppercase;padding:11px 22px;border:1px solid var(--accent);border-radius:999px;text-decoration:none;transition:background .35s,color .35s}
+.btn-pill:hover{background:var(--accent)}
+main{position:relative;z-index:2;max-width:860px;margin:0 auto;padding:150px var(--pad) 80px}
+h1{font-weight:400;text-transform:uppercase;letter-spacing:.04em;font-stretch:125%;font-variation-settings:"wdth" 125;font-size:clamp(26px,3.6vw,48px);line-height:1.1}
+.rule{width:44px;height:2px;background:var(--accent);margin:24px 0 18px;box-shadow:0 0 14px var(--accent)}
+.meta{font-size:13px;color:var(--g30)}
+h2{margin-top:44px;font-weight:500;font-size:clamp(17px,1.6vw,21px);letter-spacing:.02em;color:var(--white)}
+p,li{margin-top:12px;font-size:15px;color:var(--g10)}
+ul{padding-left:20px}
+li{margin-top:6px}
+a.l{text-decoration:underline;text-underline-offset:3px}
+a.l:hover{color:var(--g30)}
+footer{position:relative;z-index:2;border-top:1px solid #ffffff17;padding:28px var(--pad);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;background:#050607cc;backdrop-filter:blur(8px);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--g30)}
+footer img{height:30px;width:auto;display:block}
+@media(max-width:560px){header img{height:22px}.btn-pill{padding:9px 14px}main{padding-top:120px}}
+@media(max-width:560px){:root{--pad:22px}h1{font-size:clamp(24px,7.5vw,32px)}p,li{font-size:15px}footer{flex-direction:column;text-align:center;padding-bottom:calc(26px + env(safe-area-inset-bottom))}}
+
+
+/* ---------- motion & interaction refinements (emil-design-eng) ---------- */
+:root{--ease:cubic-bezier(0.23,1,0.32,1);--ease-in-out:cubic-bezier(0.77,0,0.175,1);--ease-drawer:cubic-bezier(0.32,0.72,0,1)}
+/* header: fade the background only; padding no longer animates (layout) */
+header,header.scrolled{transition:background .4s ease,backdrop-filter .4s ease}
+header.scrolled{padding-top:22px;padding-bottom:22px}
+@media(max-width:560px){header.scrolled{padding-top:14px;padding-bottom:14px}}
+/* press feedback on everything clickable */
+.btn-pill{transition:background .2s ease,color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.submit{transition:background .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.btn{transition:background .2s ease,border-color .2s ease,box-shadow .2s ease,transform 160ms var(--ease)}
+.menu-btn{transition:transform 160ms var(--ease)}
+.btn-pill:active,.submit:active,.btn:active{transform:scale(.97)}
+.menu-btn:active{transform:scale(.95)}
+.menu-open .mnav .reg:active{transform:scale(.97);transition-duration:160ms}
+/* phone menu: open with the drawer curve, close faster than it opens */
+.mnav{transition:opacity .22s ease,visibility .22s}
+.menu-open .mnav{transition:opacity .4s var(--ease-drawer),visibility .4s}
+/* hover effects only where there is a real pointer */
+@media not ((hover:hover) and (pointer:fine)){
+  .btn-pill:hover{background:transparent;color:inherit;box-shadow:none}
+  .cta:hover svg,.submit:hover svg,.btn:hover svg{transform:none}
+  .cta:hover span.u::after{width:32px}
+  .place:hover,.loc:hover{transform:none}
+  .person:hover .ph img{filter:saturate(.92)}
+  .person:hover .ph::before{transform:scaleX(0)}
+}
+/* reduced motion: fewer and gentler, not none: keep the fades, drop the movement */
+@media(prefers-reduced-motion:reduce){
+  [data-r]{opacity:0!important;transform:none!important;filter:none!important;transition:opacity .45s ease!important}
+  [data-r].show{opacity:1!important}
+}
+
+/* ---------- black & white refresh ---------- */
+:root{--accent:#a8232b}
+.btn-pill:hover{background:var(--accent);color:#fff;box-shadow:none!important}
+</style>
+</head>
+<body>
+<div class="bgimg"></div>
+<header>
+  <a href="/" aria-label="JSW Motors home"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <a class="btn-pill" href="/#register">Register Interest</a>
+</header>
+
+<main>
+  <h1>Terms &amp; Conditions</h1>
+  <div class="rule"></div>
+  <p class="meta">Last updated: 24 November 2026</p>
+
+  <p>These Terms &amp; Conditions apply to your use of this website, which is operated by Gautam Modi Group (“<strong>we</strong>”, “<strong>us</strong>”) to share information about JSW Motors and to let you register your interest. By using this website you agree to these terms. If you do not agree, please do not use it.</p>
+
+  <h2>1. About this website</h2>
+  <p>This website gives general information about JSW Motors and its upcoming vehicles. JSW Motors is a brand of the JSW Group. Gautam Modi Group is an automobile dealership group bringing JSW Motors closer to customers. Nothing on this website is an offer to sell, a booking or a reservation.</p>
+
+  <h2>2. Registering your interest</h2>
+  <ul>
+    <li>Registering your interest only means you would like to hear about the launch of JSW Motors and its vehicles. It does not create any obligation to buy, and it does not reserve a vehicle.</li>
+    <li>You must give accurate details and your own mobile number.</li>
+    <li>By ticking the consent box you agree that we may contact you by phone, SMS, WhatsApp or email with launch updates, as explained in our <a class="l" href="/privacy-policy">Privacy Policy</a>. You can withdraw this consent at any time.</li>
+  </ul>
+
+  <h2>3. Product information</h2>
+  <p>Vehicle models, specifications, features, pricing, availability and launch dates have not been announced. Any images, videos or text on this website are for general illustration and mood only, and may change without notice. Please do not treat them as a description of any final product.</p>
+
+  <h2>4. Intellectual property</h2>
+  <p>The JSW Motors name and logo belong to JSW Motors and the JSW Group. The Gautam Modi Group name and logo belong to Gautam Modi Group. Website content, including text, images and video, is protected by intellectual property laws. You may not copy, reproduce, distribute or use it for commercial purposes without written permission.</p>
+
+  <h2>5. Acceptable use</h2>
+  <p>You agree not to misuse this website. This includes trying to gain unauthorised access, introducing harmful code, sending false or abusive submissions, or using the website in a way that breaks any law.</p>
+
+  <h2>6. Accuracy and availability</h2>
+  <p>We try to keep the information on this website accurate and the website available, but we do not promise that it will always be complete, current or free from interruption or error.</p>
+
+  <h2>7. Limitation of liability</h2>
+  <p>To the extent the law allows, we are not liable for any loss or damage arising from your use of, or inability to use, this website, or from relying on its content. Nothing in these terms limits any liability that cannot be limited by law.</p>
+
+  <h2>8. Links to other sites</h2>
+  <p>This website links to our social media pages. We do not control those sites and are not responsible for their content or practices.</p>
+
+  <h2>9. Privacy</h2>
+  <p>How we handle your personal information is explained in our <a class="l" href="/privacy-policy">Privacy Policy</a>.</p>
+
+  <h2>10. Changes to these terms</h2>
+  <p>We may update these terms from time to time. The date at the top shows when they were last changed. Continuing to use the website after a change means you accept the updated terms.</p>
+
+  <h2>11. Governing law</h2>
+  <p>These terms are governed by the laws of India. Courts in Thane, Maharashtra will have jurisdiction over any dispute, subject to applicable law.</p>
+
+  <h2>12. Contact us</h2>
+  <p>Gautam Modi Group<br>
+  Phone: <a class="l" href="tel:+917567006665">+91 75670 06665</a></p>
+</main>
+
+<footer>
+  <a href="/"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
+  <span>© 2026 JSW Motors · Brought closer to you by Gautam Modi Group · Owned by Modi Agencies Private Limited</span>
+</footer>
+</body>
+</html>
