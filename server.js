@@ -41,12 +41,19 @@ function serveFile(req, res, file, cache) {
   fs.stat(file, (err, st) => {
     if (err || !st.isFile()) return send(res, 404, 'Not found', { 'Content-Type': 'text/plain; charset=utf-8' });
     const type = MIME[path.extname(file).toLowerCase()] || 'application/octet-stream';
-    res.writeHead(200, {
-      ...SECURITY_HEADERS,
-      'Content-Type': type,
-      'Content-Length': st.size,
-      'Cache-Control': cache,
-    });
+    const base = { ...SECURITY_HEADERS, 'Content-Type': type, 'Cache-Control': cache, 'Accept-Ranges': 'bytes' };
+    // Byte ranges, so browsers can seek inside videos (e.g. the Contact hero plays only the film's ending).
+    const m = /^bytes=(\d*)-(\d*)$/.exec(req.headers.range || '');
+    if (m && (m[1] || m[2])) {
+      let start = m[1] ? parseInt(m[1], 10) : st.size - parseInt(m[2], 10);
+      let end = m[1] && m[2] ? parseInt(m[2], 10) : st.size - 1;
+      start = Math.max(0, start); end = Math.min(end, st.size - 1);
+      if (start > end) return send(res, 416, '', { 'Content-Range': `bytes */${st.size}` });
+      res.writeHead(206, { ...base, 'Content-Range': `bytes ${start}-${end}/${st.size}`, 'Content-Length': end - start + 1 });
+      if (req.method === 'HEAD') return res.end();
+      return fs.createReadStream(file, { start, end }).pipe(res);
+    }
+    res.writeHead(200, { ...base, 'Content-Length': st.size });
     if (req.method === 'HEAD') return res.end();
     fs.createReadStream(file).pipe(res);
   });

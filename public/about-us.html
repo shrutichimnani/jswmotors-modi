@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>About Us | JSW Motors × Gautam Modi Group</title>
 <meta name="description" content="Gautam Modi Group brings nearly a century of automotive heritage to JSW Motors, the JSW Group's entry into next-generation passenger mobility.">
-<meta name="theme-color" content="#050607">
+<meta name="theme-color" content="#ebeae6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
@@ -403,6 +403,103 @@ h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
 }
 /* ownership line */
 .copy.owner{margin-top:-8px;color:var(--g50)}
+
+/* ---------- no decorative red underline bars (CTA, headings, labels, active nav) ---------- */
+.cta span.u{padding-bottom:0}
+.cta span.u::after,.eyebrow::before,.frame-label::before,.frame-label::after,.stat .k::before,.person .ph::before,.mnav a.l::after,nav.links a[aria-current]::after{display:none!important}
+.rule{display:none!important}
+
+/* ---------- scroll indicator: just the word, slow fade ---------- */
+.scroll-hint,.scroll-cue{gap:0;font-size:10px;font-weight:500;letter-spacing:.32em;padding-left:.32em;text-transform:uppercase;color:var(--g50)}
+.scroll-hint,.scroll-cue{animation:scrollfade 2.8s ease-in-out infinite}
+@keyframes scrollfade{0%,100%{color:#ffffff40}50%{color:#ffffffb3}}
+@media(prefers-reduced-motion:reduce){.scroll-hint,.scroll-cue{animation:none}}
+
+/* ---------- light theme: the site's only theme ---------- */
+
+/* palette: "--white" is the main text colour, so in the light theme it is near-black */
+:root{--bg:#ebeae6;--ink:#fff;--white:#1c1c1c;--g10:#262626;--g30:#545454;--g50:#737373;--g70:#c9c9c9;--g90:#e6e6e6;--hl:#6b6b6b;color-scheme:light}
+
+/* photo sections keep a dark backdrop: white type sits on dark images */
+:root :is(#hero:has(.hero-video),#c-hero,#people),
+:root body:not(.menu-open) header.on-dark{--bg:#050607;--ink:#0a0a0a;--white:#fff;--g10:#e6e6e6;--g30:#b3b3b3;--g50:#808080;--g70:#4d4d4d;--hl:#a6a6a6;color:var(--white)}
+:root :is(#hero:has(.hero-video),#c-hero,#people){background:#050607!important}
+
+/* page furniture */
+:root .vignette,:root .bgimg{display:none}
+:root .grain{opacity:.035}
+:root header.scrolled,:root header:not(#top){background:linear-gradient(#ebeae6eb,#ebeae6b3 70%,transparent)}
+:root body:not(.menu-open) header.on-dark.scrolled{background:linear-gradient(#050607e6,#050607a0 70%,transparent)}
+:root footer{border-top-color:#00000017;background:#ebeae6cc}
+:root footer .soc a svg{fill:var(--white)}
+header img{transition:filter .3s ease}
+:root :is(header,footer,.gmg-head,.lock,.side .logo) img{filter:invert(1)}
+:root body:not(.menu-open) header.on-dark img{filter:none}
+:root .menu-btn{border-color:#0000002e;background:#f5f4f066}
+:root .menu-btn i{background:#111}
+:root body:not(.menu-open) header.on-dark .menu-btn{border-color:#ffffff38;background:#05060766}
+:root body:not(.menu-open) header.on-dark .menu-btn i{background:#fff}
+:root .mnav{background:rgba(235,234,230,.97)!important}
+:root .mnav a.l{border-color:#00000017}
+
+/* type: drop the black glow behind text that only made sense on dark */
+:root :is(p.lead,.cta){text-shadow:none}
+:root :is(#hero,#c-hero,#people) p.lead{text-shadow:0 1px 16px #000,0 0 4px #000c}
+@media(max-width:900px){:root #hero:has(.hero-video) .cta{text-shadow:0 1px 14px #000,0 0 3px #000a}}
+:root .mani p .w:not(.on){color:#00000040}
+:root .scroll-cue{animation-name:scrollfade-light}
+@keyframes scrollfade-light{0%,100%{color:#00000040}50%{color:#000000a6}}
+
+/* lines and dividers */
+:root :is(.facts,.qa,.stats,.side ul,.phone){border-top-color:#0000001f}
+:root :is(.facts div,.qa details,.side li){border-bottom-color:#00000014}
+:root .stat+.stat{border-left-color:#0000001f}
+:root .loc address{border-top-color:#00000014}
+:root .c-div{background:linear-gradient(transparent,#00000026 20%,#00000026 80%,transparent)}
+:root .loc-head i{background:linear-gradient(90deg,var(--accent),#00000014 30%,transparent)}
+:root .btn.ghost{border-color:#00000033}
+
+/* cards: white on the off-white page, hairline border, soft shadow */
+:root :is(.place,.loc,#c-form .box,.side:not(#faq .side),.card){border-color:#00000012;background:#f5f4f0!important;box-shadow:0 1px 2px #00000012,0 3px 8px #0000000f}
+:root .card{box-shadow:0 -12px 40px #00000012;filter:none!important}
+:root .card::after{border-color:#0000000d;box-shadow:0 0 0 40px #00000005,0 0 0 80px #00000003}
+:root :is(.place,.loc):hover{border-color:#00000033!important}
+:root .loc .ic{border-color:#0000001f!important;background:#00000005!important}
+:root .person .ph{background:#e0dfdb;border-color:#00000014}
+:root .person .ph::after{display:none}
+
+/* form */
+:root .f input{background:#f7f6f3;border-color:#00000026}
+:root .f input:focus{background:#f7f6f3;border-color:#00000066!important;box-shadow:0 0 0 3px #0000000d!important}
+:root .f small,:root .consent.err{color:#b3261e}
+:root .formerr{color:#8f2a1c}
+
+/* ---------- hero → manifesto: overlap the two panels so there is no empty screen between them ---------- */
+#manifesto{margin-top:-40vh;margin-top:-40svh}
+#hero .hero-copy{opacity:calc(1 - var(--hp,0)*2.5)}
+#maniText{opacity:0}
+
+/* ---------- spacing: the content sections size to their content instead of a full screen each ---------- */
+#numbers,#together,#values,#leaders{min-height:0!important;padding-top:clamp(56px,8vh,96px)!important;padding-bottom:clamp(56px,8vh,96px)!important}
+#close{min-height:0!important;padding-top:clamp(56px,8vh,96px)!important}
+#close .cta-row{margin-top:32px}
+#close footer{margin-top:clamp(64px,10vh,110px)}
+.cards .card:last-child{margin-bottom:0}
+@media(max-width:900px){#numbers,#together,#values,#leaders{padding-top:48px!important;padding-bottom:48px!important}#close{padding-top:48px!important}}
+
+/* ---------- links like /#register: land the section's heading just below the fixed header ---------- */
+html{scroll-padding-top:48px}
+
+/* ---------- About hero: everything about 20% larger so the first screen feels fuller ---------- */
+#hero .hero-copy{gap:32px}
+.lock img:first-child{height:clamp(66px,8.4vw,116px)}
+.lock img:last-child{height:clamp(30px,3.6vw,50px)}
+.lock span{font-size:clamp(22px,2.4vw,36px)}
+.hero-copy aside{font-size:16px;max-width:52ch}
+.hero-copy aside b{font-size:12px;margin-bottom:12px}
+@media(min-width:901px){#hero .hero-copy h1{font-size:clamp(30px,4.1vw,68px)}}
+
+
 </style>
 </head>
 <body>
@@ -454,7 +551,7 @@ h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
 <header id="top">
   <a class="brand" href="/" aria-label="JSW Motors home"><img src="assets/jsw-motors-logo.png" alt="JSW Motors" width="2000" height="294"></a>
   <nav class="links" aria-label="Primary">
-    <a href="/#jsw">The Vision</a>
+    <a href="/">The Vision</a>
     <a href="/about-us" aria-current="page">About Us</a>
     <a href="/contact-us">Contact Us</a>
   </nav>
@@ -465,7 +562,7 @@ h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
 </header>
 
 <nav class="mnav" id="mnav" aria-label="Menu" aria-hidden="true">
-  <a class="l" href="/#jsw">The Vision</a>
+  <a class="l" href="/">The Vision</a>
   <a class="l" href="/about-us" aria-current="page">About Us</a>
   <a class="l" href="/contact-us">Contact Us</a>
   <a class="reg" href="/#register">Register interest</a>
@@ -488,7 +585,6 @@ h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
       </div>
       <aside data-r style="--d:1100"><b>Gautam Modi Group × JSW Motors</b>Nearly a century of putting India on wheels, now joined to the JSW Group’s boldest new venture.</aside>
     </div>
-    <div class="scroll-cue" aria-hidden="true">Scroll<i></i></div>
   </div>
 </section>
 
@@ -515,7 +611,6 @@ h1 .mask,h1 em.mask{display:inline-block;vertical-align:top}
 
 <!-- 5 · NUMBERS -->
 <section id="numbers" class="scene">
-  <div class="seam top"></div>
   <div class="in">
     <h2 class="wide" data-r style="--d:120">Experience you can count on.</h2>
     <div class="stats">
@@ -713,7 +808,7 @@ addEventListener('scroll',()=>{if(!raf){cur=tgt=scrollY}render()},{passive:true}
 // in-page links glide too
 $$('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{
   const t=$(a.getAttribute('href'));if(!t)return;e.preventDefault();
-  if(!raf)cur=tgt=scrollY;goTo(t.getBoundingClientRect().top+scrollY);
+  if(!raf)cur=tgt=scrollY;goTo(t.getBoundingClientRect().top+scrollY+parseFloat(getComputedStyle(t).paddingTop)-document.querySelector('header').offsetHeight-32);
 }));
 
 addEventListener("resize",render);
@@ -738,6 +833,18 @@ document.fonts&&document.fonts.ready.then(render);
   let t=0;const upd=()=>{t=0;const max=document.documentElement.scrollHeight-innerHeight;cv.style.setProperty('--sy',(max>0?scrollY/max:0).toFixed(4))};
   addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});upd();
 })();
+</script>
+<script>
+/* header: keep its dark style while it sits over a dark photo section */
+(()=>{const h=document.querySelector('header'),zs=[...document.querySelectorAll('#hero:has(.hero-video),#c-hero,#people')];if(!h||!zs.length)return;
+let t=0;const upd=()=>{t=0;const y=h.offsetHeight;h.classList.toggle('on-dark',zs.some(z=>{const r=z.getBoundingClientRect();return r.top<=y&&r.bottom>y}))};
+addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(upd)},{passive:true});addEventListener('resize',upd);upd()})();
+</script>
+<script>
+/* About: hero copy fades out first, then the "Since 1932" paragraph fades in; one scroll position drives both so they never overlap */
+(()=>{const m=document.getElementById('maniText'),hc=document.querySelector('#hero .hero-copy');if(!m||!hc)return;let t=0;
+const u=()=>{t=0;const v=innerHeight,start=v*.85/2.5;hc.style.opacity=Math.max(0,1-scrollY/start).toFixed(3);m.style.opacity=Math.min(1,Math.max(0,(scrollY-start)/(v*.15))).toFixed(3)};
+addEventListener('scroll',()=>{if(!t)t=requestAnimationFrame(u)},{passive:true});addEventListener('resize',u);u()})();
 </script>
 </body>
 </html>

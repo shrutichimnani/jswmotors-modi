@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Terms &amp; Conditions | JSW Motors</title>
 <meta name="description" content="Terms and conditions for using the JSW Motors website operated by Gautam Modi Group.">
-<meta name="theme-color" content="#050607">
+<meta name="theme-color" content="#ebeae6">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wdth,wght@75..125,100..800&display=swap" rel="stylesheet">
@@ -72,6 +72,72 @@ header.scrolled{padding-top:22px;padding-bottom:22px}
 /* ---------- black & white refresh ---------- */
 :root{--accent:#a8232b}
 .btn-pill:hover{background:var(--accent);color:#fff;box-shadow:none!important}
+
+/* ---------- no decorative red underline bars (CTA, headings, labels, active nav) ---------- */
+.cta span.u{padding-bottom:0}
+.cta span.u::after,.eyebrow::before,.frame-label::before,.frame-label::after,.stat .k::before,.person .ph::before,.mnav a.l::after,nav.links a[aria-current]::after{display:none!important}
+.rule{display:none!important}
+
+/* ---------- light theme: the site's only theme ---------- */
+
+/* palette: "--white" is the main text colour, so in the light theme it is near-black */
+:root{--bg:#ebeae6;--ink:#fff;--white:#1c1c1c;--g10:#262626;--g30:#545454;--g50:#737373;--g70:#c9c9c9;--g90:#e6e6e6;--hl:#6b6b6b;color-scheme:light}
+
+/* photo sections keep a dark backdrop: white type sits on dark images */
+:root :is(#hero:has(.hero-video),#c-hero,#people),
+:root body:has(.hero-video,.c-photo):not(.menu-open) header:not(.scrolled){--bg:#050607;--ink:#0a0a0a;--white:#fff;--g10:#e6e6e6;--g30:#b3b3b3;--g50:#808080;--g70:#4d4d4d;--hl:#a6a6a6;color:var(--white)}
+:root :is(#hero:has(.hero-video),#c-hero,#people){background:#050607!important}
+
+/* page furniture */
+:root .vignette,:root .bgimg{display:none}
+:root .grain{opacity:.035}
+:root header.scrolled,:root header:not(#top){background:linear-gradient(#ebeae6eb,#ebeae6b3 70%,transparent)}
+:root footer{border-top-color:#00000017;background:#ebeae6cc}
+:root footer .soc a svg{fill:var(--white)}
+header img{transition:filter .3s ease}
+:root :is(header,footer,.gmg-head,.lock,.side .logo) img{filter:invert(1)}
+:root body:has(.hero-video,.c-photo):not(.menu-open) header:not(.scrolled) img{filter:none}
+:root .menu-btn{border-color:#0000002e;background:#f5f4f066}
+:root .menu-btn i{background:#111}
+:root body:has(.hero-video,.c-photo):not(.menu-open) header:not(.scrolled) .menu-btn{border-color:#ffffff38;background:#05060766}
+:root body:has(.hero-video,.c-photo):not(.menu-open) header:not(.scrolled) .menu-btn i{background:#fff}
+:root .mnav{background:rgba(235,234,230,.97)!important}
+:root .mnav a.l{border-color:#00000017}
+
+/* type: drop the black glow behind text that only made sense on dark */
+:root :is(p.lead,.cta){text-shadow:none}
+:root :is(#hero,#c-hero,#people) p.lead{text-shadow:0 1px 16px #000,0 0 4px #000c}
+@media(max-width:900px){:root #hero:has(.hero-video) .cta{text-shadow:0 1px 14px #000,0 0 3px #000a}}
+:root .mani p .w{color:#0000001f}
+:root .scroll-cue{animation-name:scrollfade-light}
+@keyframes scrollfade-light{0%,100%{color:#00000040}50%{color:#000000a6}}
+
+/* lines and dividers */
+:root :is(.facts,.qa,.stats,.side ul,.phone){border-top-color:#0000001f}
+:root :is(.facts div,.qa details,.side li){border-bottom-color:#00000014}
+:root .stat+.stat{border-left-color:#0000001f}
+:root .loc address{border-top-color:#00000014}
+:root .c-div{background:linear-gradient(transparent,#00000026 20%,#00000026 80%,transparent)}
+:root .loc-head i{background:linear-gradient(90deg,var(--accent),#00000014 30%,transparent)}
+:root .btn.ghost{border-color:#00000033}
+
+/* cards: white on the off-white page, hairline border, soft shadow */
+:root :is(.place,.loc,#c-form .box,.side:not(#faq .side),.card){border-color:#00000012;background:#f5f4f0!important;box-shadow:0 1px 2px #00000012,0 3px 8px #0000000f}
+:root .card{box-shadow:0 -12px 40px #00000012}
+:root .card::after{border-color:#0000000d;box-shadow:0 0 0 40px #00000005,0 0 0 80px #00000003}
+:root :is(.place,.loc):hover{border-color:#00000033!important}
+:root .loc .ic{border-color:#0000001f!important;background:#00000005!important}
+:root .person .ph{background:#e0dfdb;border-color:#00000014}
+:root .person .ph::after{display:none}
+
+/* form */
+:root .f input{background:#f7f6f3;border-color:#00000026}
+:root .f input:focus{background:#f7f6f3;border-color:#00000066!important;box-shadow:0 0 0 3px #0000000d!important}
+:root .f small,:root .consent.err{color:#b3261e}
+:root .formerr{color:#8f2a1c}
+
+/* ---------- links like /#register: land the section's heading just below the fixed header ---------- */
+html{scroll-padding-top:48px}
 </style>
 </head>
 <body>
